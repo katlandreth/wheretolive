@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  population: 1
+  cost_of_living_rank: 1
+  life_satisfaction_rank: 1
+  geolocation: 1.5
+
+two:
+  population: 1
+  cost_of_living_rank: 1
+  life_satisfaction_rank: 1
+  geolocation: 1.5
