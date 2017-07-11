@@ -3,10 +3,11 @@ class CountriesController < ApplicationController
   before_action :lookup_country, only: [:show, :update, :edit, :destroy]
 
   def index
-    @countries = Country.all
-    @rank_json_data = Array.new.push(@countries.each do |c|
-      c.as_json(only: [:name, :code])
-    end
+    @countries = Country.all.includes(:ranks)
+    @rank_json_data = Array.new.push(
+      @countries.each do |c|
+        c.as_json(only: [:name, :code])
+      end
     )
     # attrs = ["cost_of_living_rank", "life_satisfaction_rank", "freedom_of_press_rank", "reading_rank", "math_rank", "science_rank"]
     # attrs.each do |attr|
