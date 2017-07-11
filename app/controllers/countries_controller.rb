@@ -3,14 +3,13 @@ class CountriesController < ApplicationController
   before_action :lookup_country, only: [:show, :update, :edit, :destroy]
 
   def index
-    self.benchmark("countries index") do
       @countries = Country.includes(:normal_cost_of_living_ranks,
                                     :normal_life_satisfaction_ranks,
                                     :normal_freedom_of_press_ranks,
                                     :normal_reading_ranks,
                                     :normal_math_ranks,
                                     :normal_science_ranks)
-    end
+                                    
     @rank_json_data = Array.new.push(
       @countries.each do |c|
         c.as_json(only: [:name, :code])

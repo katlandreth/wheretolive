@@ -23,7 +23,7 @@
     <td>Edit</td>
     <td style="color: red;">Delete</td>
   </thead>
-<% benchmark("index view table") do%>
+
   <tbody>
     <% @countries.each do |c| %>
     <tr class="country">
@@ -43,7 +43,6 @@
     </tr>
     <% end %>
   </tbody>
-<% end %>
 </table>
 
 <div id="container" style="height:500px; width:100%;"></div>
