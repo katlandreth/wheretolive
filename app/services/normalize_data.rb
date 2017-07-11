@@ -4,7 +4,7 @@ class NormalizeData
     @table = table.titleize.constantize
   end
 
-  def normalize_category_ranks(attr, min = 1, max = 100)
+  def normalized_category_ranks(attr, min = 1, max = 100)
     ranks = ranks_for_attr(attr)
     initial_order = order_for_attr(attr)
     current_min = initial_order == "asc" ? min_value(attr) : max_value(attr)

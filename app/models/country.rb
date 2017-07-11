@@ -2,17 +2,20 @@ class Country < ActiveRecord::Base
 
   has_many :ranks, dependent: :destroy
   delegate :cost_of_living_rank, :life_satisfaction_rank, :freedom_of_press_rank,
-   :reading_rank, :math_rank, :science_rank, to: :ranks
-  def self.normalize_category_ranks(attr, initial_order, min = 1, max = 100)
-    ranks = ranks_for_attr(attr)
-    current_min = initial_order == "asc" ? Country.min_value(attr) : Country.max_value(attr)
-    current_max = initial_order == "asc" ? Country.max_value(attr) : Country.min_value(attr)
-
-    ranks.map { |id, n| [id, ( min + (n - current_min) * (max - min) / (current_max - current_min) ).round] }
-  end
+   :reading_rank, :math_rank, :science_rank, :normal_cost_of_living_rank,
+   :normal_life_satisfaction_rank, :normal_freedom_of_press_rank, :normal_reading_rank,
+   :normal_math_rank, :normal_science_rank, to: :ranks
+   
+  # def self.normalize_category_ranks(attr, initial_order, min = 1, max = 100)
+  #   ranks = ranks_for_attr(attr)
+  #   current_min = initial_order == "asc" ? Country.min_value(attr) : Country.max_value(attr)
+  #   current_max = initial_order == "asc" ? Country.max_value(attr) : Country.min_value(attr)
+  #
+  #   ranks.map { |id, n| [id, ( min + (n - current_min) * (max - min) / (current_max - current_min) ).round] }
+  # end
 
   def normalized_rank(attr)
-    NormalizeData.new("country").normalize_category_ranks(attr, 1, 100)
+
   end
 
   def self.ranks_for_attr(attr)

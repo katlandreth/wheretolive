@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529170816) do
+ActiveRecord::Schema.define(version: 20170710172627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(version: 20170529170816) do
     t.float    "score"
     t.string   "name"
     t.string   "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "normalized_score"
   end
 
   add_index "ranks", ["country_id"], name: "index_ranks_on_country_id", using: :btree

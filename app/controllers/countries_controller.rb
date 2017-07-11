@@ -4,10 +4,14 @@ class CountriesController < ApplicationController
 
   def index
     @countries = Country.all
-    attrs = ["cost_of_living_rank", "life_satisfaction_rank", "freedom_of_press_rank", "reading_rank", "math_rank", "science_rank"]
-    attrs.each do |attr|
-      instance_variable_set("@normalized_#{attr}_column", NormalizeData.new("country").normalize_category_ranks(attr, 1, 100))
+    @rank_json_data = Array.new.push(@countries.each do |c|
+      c.as_json(only: [:name, :code])
     end
+    )
+    # attrs = ["cost_of_living_rank", "life_satisfaction_rank", "freedom_of_press_rank", "reading_rank", "math_rank", "science_rank"]
+    # attrs.each do |attr|
+    #   instance_variable_set("@normalized_#{attr}_column", NormalizeData.new("country").normalize_category_ranks(attr, 1, 100))
+    # end
   end
 
   def show

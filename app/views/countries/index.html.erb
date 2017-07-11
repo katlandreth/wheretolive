@@ -30,12 +30,13 @@
       <td class="name"><%= link_to c.name, country_path(c.id) %></td>
       <td class="code"><%= c.code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
-      <td><%= @normalized_cost_of_living_rank_column[c.id] || "N/A" %></td>
-      <td><%= @normalized_life_satisfaction_rank_column[c.id] || "N/A" %></td>
-      <td><%= @normalized_freedom_of_press_rank_column[c.id] || "N/A" %></td>
-      <td><%= @normalized_reading_rank_column[c.id] || "N/A" %></td>
-      <td><%= @normalized_math_rank_column[c.id] || "N/A" %></td>
-      <td><%= @normalized_science_rank_column[c.id] || "N/A" %></td>
+
+      <td><%= c.normal_cost_of_living_rank || "N/A" %></td>
+      <td><%= c.normal_life_satisfaction_rank || "N/A" %></td>
+      <td><%= c.normal_freedom_of_press_rank || "N/A" %></td>
+      <td><%= c.normal_reading_rank || "N/A" %></td>
+      <td><%= c.normal_math_rank || "N/A" %></td>
+      <td><%= c.normal_science_rank || "N/A" %></td>
       <td><%= c.latitude %> by <%= c.longitude %></td>
       <td><%= link_to "Edit", edit_country_path(c.id)%></td>
       <td><%= link_to "Delete", { action: :destroy, id: c.id }, method: :delete %></td>
@@ -70,9 +71,7 @@ $(document).ready(function(){
   // Read the columns into the data array
 
   $(".sorting").click(function(){
-    console.log("Does I click?");
     var data = collectData();
-    console.log(data);
     initMap(data);
   });
 
@@ -82,14 +81,23 @@ $(document).ready(function(){
       $("tr.country").each(function() {
       data.push({
         code: $(this).find("td.code").text(),
-        value: parseInt($(this).find("td.sorting_1").text()),
+        value: parseScore($(this).find("td.sorting_1").text()),
         name: $(this).find("td.name")
       });
     });
     return data;
   }
 
-  // Initiate the map
+  function parseScore(value){
+    if( isNaN(value) ) {
+      return 0;
+    }
+    else {
+      return value;
+    }
+  }
+
+  // Initialize the map
   function initMap(data) {
     Highcharts.mapChart('container', {
       chart: {
@@ -122,6 +130,20 @@ $(document).ready(function(){
         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
         symbolRadius: 50,
         symbolHeight: 14,
+      },
+      tooltip: {
+        formatter: function () {
+              if( this.point.value == 0 ){
+                console.log(this.point.value);
+                return '<b>' + this.series.name + '</b><br>' +
+                  this.point.name +  ': no data for this country'
+                }
+                else {
+                  console.log(this.point.value);
+                  return '<b>' + this.series.name + '</b><br>' +
+                  this.point.name + ": " + this.point.value;
+                }
+          }
       },
 
       colorAxis: {
@@ -174,12 +196,14 @@ $(document).ready(function(){
         },
         tooltip: {
           formatter: function () {
-                if( this.point.value == 34){
+                if( this.point.value == 0 ){
+                  console.log(this.point.value);
                   return '<b>Series name: ' + this.series.name + '</b><br>' +
                     'Point name: ' + this.point.name + '<br>' +
                     'Value: no data for this country' + this.point.value;
   								}
                   else {
+                    console.log(this.point.value);
                     return '<b>Series name: ' + this.series.name + '</b><br>' +
                     'Point name: ' + this.point.name + '<br>' +
                     'Value: ' + this.point.value;
