@@ -31,12 +31,12 @@
       <td class="code"><%= c.code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
 
-      <td><%= c.normal_cost_of_living_ranks.try(:first).try(:score) || "N/A" %></td>
-      <td><%= c.normal_life_satisfaction_ranks.try(:first).try(:score) || "N/A" %></td>
-      <td><%= c.normal_freedom_of_press_ranks.try(:first).try(:score) || "N/A" %></td>
-      <td><%= c.normal_reading_ranks.try(:first).try(:score) || "N/A" %></td>
-      <td><%= c.normal_math_ranks.try(:first).try(:score) || "N/A" %></td>
-      <td><%= c.normal_science_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_cost_of_living_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.normal_life_satisfaction_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.normal_freedom_of_press_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.normal_reading_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.normal_math_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.normal_science_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
       <td><%= c.latitude %> by <%= c.longitude %></td>
       <td><%= link_to "Edit", edit_country_path(c.id)%></td>
       <td><%= link_to "Delete", { action: :destroy, id: c.id }, method: :delete %></td>
