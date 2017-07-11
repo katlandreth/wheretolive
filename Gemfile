@@ -20,6 +20,7 @@ gem 'rails-assets-datatables.net-plugins', source: 'https://rails-assets.org'
 group :development, :test do
   gem 'byebug'
   gem 'rails-erd', require: false
+  gem 'rspec'
 end
 
 group :development do
