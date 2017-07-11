@@ -23,7 +23,7 @@
     <td>Edit</td>
     <td style="color: red;">Delete</td>
   </thead>
-
+<% benchmark("index view table") do%>
   <tbody>
     <% @countries.each do |c| %>
     <tr class="country">
@@ -31,19 +31,19 @@
       <td class="code"><%= c.code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
 
-      <td><%= c.normal_cost_of_living_rank || "N/A" %></td>
-      <td><%= c.normal_life_satisfaction_rank || "N/A" %></td>
-      <td><%= c.normal_freedom_of_press_rank || "N/A" %></td>
-      <td><%= c.normal_reading_rank || "N/A" %></td>
-      <td><%= c.normal_math_rank || "N/A" %></td>
-      <td><%= c.normal_science_rank || "N/A" %></td>
+      <td><%= c.normal_cost_of_living_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_life_satisfaction_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_freedom_of_press_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_reading_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_math_ranks.try(:first).try(:score) || "N/A" %></td>
+      <td><%= c.normal_science_ranks.try(:first).try(:score) || "N/A" %></td>
       <td><%= c.latitude %> by <%= c.longitude %></td>
       <td><%= link_to "Edit", edit_country_path(c.id)%></td>
       <td><%= link_to "Delete", { action: :destroy, id: c.id }, method: :delete %></td>
     </tr>
     <% end %>
   </tbody>
-
+<% end %>
 </table>
 
 <div id="container" style="height:500px; width:100%;"></div>
