@@ -3,22 +3,18 @@ class CountriesController < ApplicationController
   before_action :lookup_country, only: [:show, :update, :edit, :destroy]
 
   def index
-      @countries = Country.includes(:normal_cost_of_living_ranks,
-                                    :normal_life_satisfaction_ranks,
-                                    :normal_freedom_of_press_ranks,
-                                    :normal_reading_ranks,
-                                    :normal_math_ranks,
-                                    :normal_science_ranks)
-                                    
+    @countries = Country.includes(:cost_of_living_ranks,
+                                  :life_satisfaction_ranks,
+                                  :freedom_of_press_ranks,
+                                  :reading_ranks,
+                                  :math_ranks,
+                                  :science_ranks)
+
     @rank_json_data = Array.new.push(
       @countries.each do |c|
         c.as_json(only: [:name, :code])
       end
     )
-    # attrs = ["cost_of_living_rank", "life_satisfaction_rank", "freedom_of_press_rank", "reading_rank", "math_rank", "science_rank"]
-    # attrs.each do |attr|
-    #   instance_variable_set("@normalized_#{attr}_column", NormalizeData.new("country").normalize_category_ranks(attr, 1, 100))
-    # end
   end
 
   def show

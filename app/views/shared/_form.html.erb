@@ -1,0 +1,14 @@
+<%= form_for [@child, @answer] do |f| %>
+  <% @parent.questions.each_with_index do |question, i|  %>
+    <p>
+      (Q<%= i + 1 %>)
+      <%= question.text %>
+      <%= f.hidden_field :question_id, :value => question.id, :index => "index#{i}" %>
+      <label><%= f.radio_button :answer, 0, :index => "index#{i}" %>A</label>
+      <label><%= f.radio_button :answer, 1, :index => "index#{i}" %>B</label>
+      <label><%= f.radio_button :answer, 2, :index => "index#{i}" %>C</label>
+      <label><%= f.radio_button :answer, 3, :index => "index#{i}" %>D</label>
+    </p>
+  <% end %>
+  <%= f.submit "SEND" %>
+<% end %>

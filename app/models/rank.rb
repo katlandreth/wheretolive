@@ -97,4 +97,10 @@ class Rank < ActiveRecord::Base
     end
   end
 
+  def self.weighted_average(country, weights)
+    
+    byebug
+
+  end
+
 end

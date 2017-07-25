@@ -5,8 +5,7 @@
 <h3>Notes:</h3>
 <ul>
   <li>Cost of Living is relative to NYC</li>
-  <li>Higher numbers for education rankings are better</li>
-  <li>Lower numbers for life satisfaction are better</li>
+  <li>All of the ranks are normalized to a scale of 1-100 where 1 is the best, and 100 is the worst.</li>
 </ul>
 <table class="table table-bordered table-striped datatable" id="countries-table">
   <thead>
@@ -19,9 +18,8 @@
     <td>Reading Rank</td>
     <td>Math Rank</td>
     <td>Science Rank</td>
-    <td>Geolocation</td>
     <td>Edit</td>
-    <td style="color: red;">Delete</td>
+    <td>Delete</td>
   </thead>
 
   <tbody>
@@ -31,187 +29,31 @@
       <td class="code"><%= c.code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
 
-      <td><%= c.normal_cost_of_living_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.normal_life_satisfaction_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.normal_freedom_of_press_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.normal_reading_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.normal_math_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.normal_science_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.latitude %> by <%= c.longitude %></td>
-      <td><%= link_to "Edit", edit_country_path(c.id)%></td>
-      <td><%= link_to "Delete", { action: :destroy, id: c.id }, method: :delete %></td>
+      <td><%= c.cost_of_living_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.life_satisfaction_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.freedom_of_press_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.reading_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.math_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.science_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), edit_country_path(c.id), class: "btn btn-primary"%></td>
+      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), { action: :destroy, id: c.id }, method: :delete, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
-<div id="container" style="height:500px; width:100%;"></div>
-
 <script>
-  $(document).ready(function(){
+var numbersType = $.fn.dataTable.absoluteOrderNumber([{
+  value: 'N/A',
+  position: 'bottom'
+}]);
 
-    var numbersType = $.fn.dataTable.absoluteOrderNumber( [
-      { value: 'N/A', position: 'bottom' }
-    ] );
-
-    $('.datatable').dataTable({
-      columnDefs: [
-        { type: numbersType, targets: [2, 3, 4, 5, 6, 7, 8] }
-      ]
-    });
-  });
-</script>
-
-
-<script>
-$(document).ready(function(){
-  var data = collectData();
-  initMap(data);
-  // Read the columns into the data array
-
-  $(".sorting").click(function(){
-    var data = collectData();
-    initMap(data);
-  });
-
-
-  function collectData() {
-    var data = [];
-      $("tr.country").each(function() {
-      data.push({
-        code: $(this).find("td.code").text(),
-        value: parseScore($(this).find("td.sorting_1").text()),
-        name: $(this).find("td.name")
-      });
-    });
-    return data;
-  }
-
-  function parseScore(value){
-    if( isNaN(value) ) {
-      return 0;
-    }
-    else {
-      return value;
-    }
-  }
-
-  // Initialize the map
-  function initMap(data) {
-    Highcharts.mapChart('container', {
-      chart: {
-        borderWidth: 1
-      },
-
-      colors: ['rgba(212, 49, 0, 1)', 'rgba(232, 99, 19, 1)', 'rgba(255, 139, 12, 1)', 'rgba(255, 178, 7, 1)', 'rgba(255, 201, 27, 1)',
-           'rgba(70, 255, 246, 1)', 'rgba(17, 199, 232,1)', 'rgba(15, 159, 255,1)', 'rgba(16, 82, 222,1)', 'rgba(13, 23, 150,1)', 'rgba(0,0,0,0.1)'].reverse(),
-
-      title: {
-        text: 'Country By ' + $("thead td.sorting_asc, thead td.sorting_desc").text()
-      },
-
-      mapNavigation: {
-        enabled: true
-      },
-
-      legend: {
-        title: {
-          text: 'Country by ' + $("thead td.sorting_asc, thead td.sorting_desc").text(),
-          style: {
-            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-          }
-        },
-        align: 'left',
-        verticalAlign: 'bottom',
-        floating: true,
-        layout: 'vertical',
-        valueDecimals: 0,
-        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
-        symbolRadius: 50,
-        symbolHeight: 14,
-      },
-      tooltip: {
-        formatter: function () {
-              if( this.point.value == 0 ){
-                console.log(this.point.value);
-                return '<b>' + this.series.name + '</b><br>' +
-                  this.point.name +  ': no data for this country'
-                }
-                else {
-                  console.log(this.point.value);
-                  return '<b>' + this.series.name + '</b><br>' +
-                  this.point.name + ": " + this.point.value;
-                }
-          }
-      },
-
-      colorAxis: {
-        dataClassColor: 'category',
-        dataClasses: [{
-            to: 0
-        }, {
-            from: 1,
-            to: 10
-        }, {
-            from: 11,
-            to: 20
-        }, {
-            from: 21,
-            to: 30
-        }, {
-            from: 31,
-            to: 40
-        }, {
-            from: 41,
-            to: 50
-        }, {
-            from: 51,
-            to: 60
-        }, {
-          from: 61,
-          to: 70
-        }, {
-          from: 71,
-          to: 80
-        },{
-          from: 81,
-          to: 90
-        },{
-          from: 91,
-          to: 100
-        }]
-      },
-
-      series: [{
-        data: data,
-        mapData: Highcharts.maps['custom/world'],
-        joinBy: ['iso-a2', 'code'],
-        animation: true,
-        name: $("thead td.sorting_asc, thead td.sorting_desc").text(),
-        states: {
-          hover: {
-            color: '#a4edba'
-          }
-        },
-        tooltip: {
-          formatter: function () {
-                if( this.point.value == 0 ){
-                  console.log(this.point.value);
-                  return '<b>Series name: ' + this.series.name + '</b><br>' +
-                    'Point name: ' + this.point.name + '<br>' +
-                    'Value: no data for this country' + this.point.value;
-  								}
-                  else {
-                    console.log(this.point.value);
-                    return '<b>Series name: ' + this.series.name + '</b><br>' +
-                    'Point name: ' + this.point.name + '<br>' +
-                    'Value: ' + this.point.value;
-                  }
-            }
-        }
-      }]
-    });
-  };
+$('.datatable').dataTable({
+  columnDefs: [{
+    type: numbersType,
+    targets: [2, 3, 4, 5, 6, 7, 8]
+  }]
 });
+
 
 </script>

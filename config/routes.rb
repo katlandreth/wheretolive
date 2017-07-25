@@ -6,14 +6,16 @@ Rails.application.routes.draw do
    root 'countries#index'
 
    resources :countries
+   get 'maps' => 'maps#show', as: :maps
+   post 'overall_rank' => 'maps#overall_rank', as: :overall_rank
 
-   get 'scrape_countries' => 'countries#scrape_satisfaction_data', as: :scrape_satisfaction_data
-   get 'scrape_gps_data' => 'countries#scrape_gps_data', as: :scrape_gps_data
-   get 'scrape_code_data' => 'countries#scrape_code_data', as: :scrape_code_data
-   get 'scrape_cost_of_living_data' => 'countries#scrape_cost_of_living_data', as: :scrape_cost_of_living_data
-   get 'scrape_education_data' => 'countries#scrape_education_data', as: :scrape_education_data
-   get 'scrape_freedom_of_press_data' => 'countries#scrape_freedom_of_press_data', as: :scrape_freedom_of_press_data
-   get 'world_map' => 'countries#world_map', as: :world_map
+  #  get 'scrape_countries' => 'countries#scrape_satisfaction_data', as: :scrape_satisfaction_data
+  #  get 'scrape_gps_data' => 'countries#scrape_gps_data', as: :scrape_gps_data
+  #  get 'scrape_code_data' => 'countries#scrape_code_data', as: :scrape_code_data
+  #  get 'scrape_cost_of_living_data' => 'countries#scrape_cost_of_living_data', as: :scrape_cost_of_living_data
+  #  get 'scrape_education_data' => 'countries#scrape_education_data', as: :scrape_education_data
+  #  get 'scrape_freedom_of_press_data' => 'countries#scrape_freedom_of_press_data', as: :scrape_freedom_of_press_data
+
 
 
 
