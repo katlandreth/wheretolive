@@ -1,0 +1,97 @@
+//colors
+
+$cerulean: #4484ce;
+$aluminum: #d9d9d9;
+$sunshine: #f9cf00;
+$tangerine: #f19f4d;
+$ivory-black: #1d2631;
+
+.thumbnail img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-header {
+  color: white;
+  position: absolute;
+  top: 100px;
+  text-align:center;
+  width: 100%;
+  text-shadow: 0 0 15px rgba(0,0,0,0.4);
+  text-transform: uppercase;
+}
+
+.thumbnail {
+  position: relative;
+  padding:0;
+  border: none;
+  border-radius: 0;
+}
+
+.thumb-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  position:absolute;
+  span {
+    color: white;
+  }
+}
+
+.thumbnail-graph {
+  height:250px;
+  width:100%;
+  padding:20px;
+  position:relative;
+  background:$ivory-black;
+  bottom: 0;
+  transition: all .25s ease;
+  .glyphicon {
+    color: white;
+    font-size: 30px;
+    margin-left: -25px;
+    text-shadow: 0 0 1px rgba(0,0,0,0.4);
+  }
+}
+
+.thumb-graph-bar {
+  display:inline-block;
+  width:70%;
+  height:30px;
+  margin-left: 15px;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
+}
+
+.thumbnail-graph-header {
+  text-align:center;
+  color:white;
+  text-transform:uppercase;
+  text-shadow: 0 0 1px rgba(0,0,0,0.2);
+  margin: 20px;
+}
+
+.thumb-graph-row {
+  line-height:1;
+  margin: 10px auto;
+  text-align:center;
+  &:nth-child(2) .thumb-graph-bar{
+    background: $cerulean;
+  }
+  &:nth-child(3) .thumb-graph-bar{
+    background: $sunshine;
+  }
+  &:nth-child(4) .thumb-graph-bar{
+    background: $tangerine;
+  }
+
+}
+
+.item {
+  overflow: hidden;
+  height: 250px;
+  margin-bottom: 40px;
+  &:hover .thumbnail-graph {
+    bottom: 270px; // the height of the thumbnail plus 20px margin
+  }
+}
