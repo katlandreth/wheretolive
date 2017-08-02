@@ -1,5 +1,7 @@
 class Country < ActiveRecord::Base
 
+  require 'csv'
+
   has_many :ranks, dependent: :destroy
   has_many :cost_of_living_ranks,    -> { where(name: "cost_of_living_rank") }, class_name: "Rank"
   has_many :life_satisfaction_ranks, -> { where(name: "life_satisfaction_rank") }, class_name: "Rank"
@@ -12,6 +14,7 @@ class Country < ActiveRecord::Base
   #  :reading_rank, :math_rank, :science_rank, :normal_cost_of_living_rank,
   #  :normal_life_satisfaction_rank, :normal_freedom_of_press_rank, :normal_reading_rank,
   #  :normal_math_rank, :normal_science_rank, to: :ranks
+
 
 
   def normalized_ranks

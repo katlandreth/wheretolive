@@ -11,25 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710172627) do
+ActiveRecord::Schema.define(version: 20170731164756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "codes", force: :cascade do |t|
+    t.string "country_name"
+    t.string "value"
+  end
+
   create_table "countries", force: :cascade do |t|
     t.integer  "population"
-    t.float    "cost_of_living_rank"
-    t.integer  "life_satisfaction_rank"
     t.float    "latitude"
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float    "longitude"
-    t.integer  "math_rank"
-    t.integer  "science_rank"
-    t.integer  "reading_rank"
-    t.integer  "freedom_of_press_rank"
     t.string   "code"
+  end
+
+  create_table "populations", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "value"
   end
 
   create_table "ranks", force: :cascade do |t|
@@ -43,5 +47,35 @@ ActiveRecord::Schema.define(version: 20170710172627) do
   end
 
   add_index "ranks", ["country_id"], name: "index_ranks_on_country_id", using: :btree
+
+  create_table "raw_cost_of_living_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
+
+  create_table "raw_freedom_of_press_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
+
+  create_table "raw_life_satisfaction_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
+
+  create_table "raw_math_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
+
+  create_table "raw_reading_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
+
+  create_table "raw_science_scores", force: :cascade do |t|
+    t.string "country_name"
+    t.float  "score"
+  end
 
 end

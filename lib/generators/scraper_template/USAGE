@@ -1,0 +1,8 @@
+Description:
+    Creates a basic country data scraper with rules for logic and naming conventions.
+
+Example:
+    rails generate scraper_template file_name:NameOfScraper description:description_of_rake_task url:http://path/to/scrapedPage.html
+
+    This will create:
+        lib/tasks/name_of_scraper.rb
