@@ -4,13 +4,15 @@ namespace :export do
   desc "export country names to csv"
   task country_names: :environment do
 
-    file = "#{Rails.root}/public/user_data.csv"
-    countries = Country.all
+    file = "#{Rails.root}/public/country_names.csv"
+    raw_tables = %w[RawReadingScore RawScienceScore RawMathScore RawLifeSatisfactionScore RawFreedomOfPressScore RawCostOfLivingScore CountryCode]
     column_headers = ["Name", "ID"]
 
     CSV.open(file, 'w', write_headers: true, headers: column_headers) do |writer|
-      countries.each do |country|
-        writer << [country.name, country.id]
+      raw_tables.each do |table|
+        table.constantize.all.each do |country|
+          writer << [country.country_name, country.id]
+        end
       end
     end
   end

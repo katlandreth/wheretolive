@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731164756) do
+ActiveRecord::Schema.define(version: 20170804191939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,41 @@ ActiveRecord::Schema.define(version: 20170731164756) do
     t.datetime "updated_at", null: false
     t.float    "longitude"
     t.string   "code"
+  end
+
+  create_table "country_aliases", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "country_display_name_id"
+    t.integer  "country_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "display_name"
+  end
+
+  add_index "country_aliases", ["country_display_name_id"], name: "index_country_aliases_on_country_display_name_id", using: :btree
+  add_index "country_aliases", ["country_id"], name: "index_country_aliases_on_country_id", using: :btree
+
+  create_table "country_codes", force: :cascade do |t|
+    t.string   "country_name"
+    t.string   "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "country_display_names", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "country_display_names", ["country_id"], name: "index_country_display_names_on_country_id", using: :btree
+
+  create_table "country_populations", force: :cascade do |t|
+    t.string   "country_name"
+    t.float    "data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "populations", force: :cascade do |t|
@@ -78,4 +113,7 @@ ActiveRecord::Schema.define(version: 20170731164756) do
     t.float  "score"
   end
 
+  add_foreign_key "country_aliases", "countries"
+  add_foreign_key "country_aliases", "country_display_names"
+  add_foreign_key "country_display_names", "countries"
 end
