@@ -4,32 +4,32 @@ class NormalizeData
     @table = table.titleize.constantize
   end
 
-  def normalized_category_ranks(attr, min = 1, max = 100)
-    ranks = ranks_for_attr(attr)
-    initial_order = order_for_attr(attr)
-    current_min = initial_order == "asc" ? min_value(attr) : max_value(attr)
-    current_max = initial_order == "asc" ? max_value(attr) : min_value(attr)
-    ranks.map! { |id, n| [id, ( min + (n - current_min) * (max - min) / (current_max - current_min) ).round]}
-    ranks.to_h
+  def normalized_category_ranks(table, initial_order, min = 1, max = 100)
+
+    scores = raw_scores(table)
+    current_min = initial_order == "asc" ? min_value(table) : max_value(table)
+    current_max = initial_order == "asc" ? max_value(table) : min_value(table)
+    scores.map! { |name, n| [name, ( min + (n - current_min) * (max - min) / (current_max - current_min) ).round]}
+    scores.to_h
   end
 
-  def ranks_for_attr(attr)
-    Rank.where(name: attr).pluck(:country_id, :score).reject{ |r| r[1] == nil }
+  def raw_scores(table)
+    table.constantize.pluck(:country_name, :score).reject{ |r| r[1] == nil }.reject{ |r| junk_data.include?(r[0]) }
   end
 
-  def order_for_attr(attr)
-    Rank.where(name: attr).first.order
+  def max_value(table)
+    table.constantize.pluck(:score).reject{ |r| r == nil }.max
   end
 
-  def max_value(attr)
-    Rank.where(name: attr).pluck(:score).reject{ |r| r == nil }.max
-  end
-
-  def min_value(attr)
-    Rank.where(name: attr).pluck(:score).reject{ |r| r == nil }.min
+  def min_value(table)
+    table.constantize.pluck(:score).reject{ |r| r == nil }.min
   end
 
   def non_data_columns
     ["id", "latitude", "name", "created_at", "updated_at", "longitude", "code"]
+  end
+
+  def junk_data
+    ["Selected countries and jurisdictions", "International Average (OECD)"]
   end
 end

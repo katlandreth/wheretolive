@@ -29,12 +29,12 @@
       <td class="code"><%= c.code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
 
-      <td><%= c.cost_of_living_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.life_satisfaction_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.freedom_of_press_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.reading_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.math_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
-      <td><%= c.science_ranks.try(:first).try(:normalized_score) || "N/A" %></td>
+      <td><%= c.cost_of_living_score || "N/A" %></td>
+      <td><%= c.life_satisfaction_score || "N/A" %></td>
+      <td><%= c.freedom_of_press_score || "N/A" %></td>
+      <td><%= c.reading_score || "N/A" %></td>
+      <td><%= c.math_score || "N/A" %></td>
+      <td><%= c.science_score || "N/A" %></td>
       <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), edit_country_path(c.id), class: "btn btn-primary"%></td>
       <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), { action: :destroy, id: c.id }, method: :delete, class: "btn btn-danger" %></td>
     </tr>

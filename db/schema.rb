@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804191939) do
+ActiveRecord::Schema.define(version: 20170807202705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,16 @@ ActiveRecord::Schema.define(version: 20170804191939) do
     t.integer  "population"
     t.float    "latitude"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.float    "longitude"
     t.string   "code"
+    t.string   "reading_score"
+    t.string   "science_score"
+    t.string   "math_score"
+    t.string   "life_satisfaction_score"
+    t.string   "freedom_of_press_score"
+    t.string   "cost_of_living_score"
   end
 
   create_table "country_aliases", force: :cascade do |t|
