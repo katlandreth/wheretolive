@@ -4,7 +4,7 @@ class MapsController < ApplicationController
   before_action :current_category, only: [:show]
 
   def show
-    category_name = category_name(current_category)
+    category_name = current_category
     @countries = Country.all
 
     @data = []
@@ -32,11 +32,10 @@ class MapsController < ApplicationController
       categories_with_values = Hash[categories.collect { |category| [category, eval("country.#{category}")] } ]
       if categories_with_values.values.include?(nil)
         tooltip = categories_with_values.map{ |category, value| value == nil ? category.titleize : nil }.compact.to_sentence(words_connector: ',<br>', last_word_connector: ',<br> and ')
-        rank = 0
+        score = 0
       else
         weighted_categories = categories.map do |category|
-
-          score = eval("country.#{category}")
+          score = eval("country.#{category}").to_i
           score * weight_params["#{category}_value".to_sym].to_i
         end
         tooltip = ""
@@ -55,7 +54,11 @@ class MapsController < ApplicationController
   private
 
   def get_categories
-    @categories = %w[RawReadingScore RawScienceScore RawMathScore RawLifeSatisfactionScore RawFreedomOfPressScore RawCostOfLivingScore]
+    @categories = %w[reading_score science_score math_score life_satisfaction_score freedom_of_press_score cost_of_living_score]
+  end
+
+  def current_category
+    @current_category = params[:category] || "life_satisfaction_score"
   end
 
   def weight_params
@@ -63,11 +66,4 @@ class MapsController < ApplicationController
     params.require(:category_weights).permit(permitted)
   end
 
-  def current_category
-    @current_category = params[:category] || "life_satisfaction_score"
-  end
-
-  def category_name(current_category)
-    "#{current_category}".gsub("Raw", "").underscore.to_sym
-  end
 end

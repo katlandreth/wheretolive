@@ -1,0 +1,53 @@
+
+<table class="table table-bordered table-striped datatable" id="countries-table">
+  <thead>
+    <td class="name">Name</td>
+    <td class="code">Country Code</td>
+    <td>Population</td>
+    <td>Cost of Living Rank</td>
+    <td>Life Satisfaction Rank</td>
+    <td>Freedom of Press Rank</td>
+    <td>Reading Rank</td>
+    <td>Math Rank</td>
+    <td>Science Rank</td>
+    <td>Edit</td>
+    <td>Delete</td>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |c| %>
+    <tr class="country">
+      <td class="name"><%= link_to c.name, country_path(c.id) %></td>
+      <td class="code"><%= c.code %></td>
+      <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
+
+      <td><%= c.cost_of_living_score || "N/A" %></td>
+      <td><%= c.life_satisfaction_score || "N/A" %></td>
+      <td><%= c.freedom_of_press_score || "N/A" %></td>
+      <td><%= c.reading_score || "N/A" %></td>
+      <td><%= c.math_score || "N/A" %></td>
+      <td><%= c.science_score || "N/A" %></td>
+      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), edit_country_path(c.id), class: "btn btn-primary"%></td>
+      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), { action: :destroy, id: c.id }, method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<script>
+var numbersType = $.fn.dataTable.absoluteOrderNumber([{
+value: 'N/A',
+position: 'bottom'
+}]);
+
+$('.datatable').dataTable({
+columnDefs: [{
+  type: numbersType,
+  targets: [2, 3, 4, 5, 6, 7, 8]
+}]
+});
+
+
+</script>

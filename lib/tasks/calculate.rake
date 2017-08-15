@@ -7,8 +7,10 @@ task calculate_scaled_scores: :environment do
     scores = NormalizeData.new("country").normalized_category_ranks(table, table.constantize.raw_score_order)
     scores.each do |raw_country_name, score|
       if country = Country.find_by(name: country_display_name(raw_country_name))
+        puts "updating" + country_display_name(raw_country_name) + " " + score.to_s
         country.update(attribute_name(table) => score)
       else
+        puts "creating" + country_display_name(raw_country_name)
         Country.create(attribute_name(table) => score, name: country_display_name(raw_country_name))
       end
     end

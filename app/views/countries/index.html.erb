@@ -1,61 +1,38 @@
 <script src="https://code.highcharts.com/maps/modules/data.js"></script>
 <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
 
-<h1>Countries</h1>
-<h3>Notes:</h3>
-<ul>
-  <li>Cost of Living is relative to NYC</li>
-  <li>All of the ranks are normalized to a scale of 1-100 where 1 is the best, and 100 is the worst.</li>
-</ul>
-<table class="table table-bordered table-striped datatable" id="countries-table">
-  <thead>
-    <td class="name">Name</td>
-    <td class="code">Country Code</td>
-    <td>Population</td>
-    <td>Cost of Living Rank</td>
-    <td>Life Satisfaction Rank</td>
-    <td>Freedom of Press Rank</td>
-    <td>Reading Rank</td>
-    <td>Math Rank</td>
-    <td>Science Rank</td>
-    <td>Edit</td>
-    <td>Delete</td>
-  </thead>
-
-  <tbody>
-    <% @countries.each do |c| %>
-    <tr class="country">
-      <td class="name"><%= link_to c.name, country_path(c.id) %></td>
-      <td class="code"><%= c.code %></td>
-      <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
-
-      <td><%= c.cost_of_living_score || "N/A" %></td>
-      <td><%= c.life_satisfaction_score || "N/A" %></td>
-      <td><%= c.freedom_of_press_score || "N/A" %></td>
-      <td><%= c.reading_score || "N/A" %></td>
-      <td><%= c.math_score || "N/A" %></td>
-      <td><%= c.science_score || "N/A" %></td>
-      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), edit_country_path(c.id), class: "btn btn-primary"%></td>
-      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), { action: :destroy, id: c.id }, method: :delete, class: "btn btn-danger" %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= render partial: "grid" %>
-
-<script>
-var numbersType = $.fn.dataTable.absoluteOrderNumber([{
-  value: 'N/A',
-  position: 'bottom'
-}]);
-
-$('.datatable').dataTable({
-  columnDefs: [{
-    type: numbersType,
-    targets: [2, 3, 4, 5, 6, 7, 8]
-  }]
-});
+<div class="container">
 
 
-</script>
+  <div class="well well-sm">
+    <strong>Display</strong>
+    <div class="btn-group">
+
+      <a id="map-view-button" data-index-style-div="map-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
+        <span class="glyphicon glyphicon-globe"></span>Map</a>
+      </a>
+
+      <a id="grid-view-button" data-index-style-div="grid-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
+        <span class="glyphicon glyphicon-th"></span>Grid</a>
+      </a>
+
+      <a id="table-view-button" data-index-style-div="table-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
+        <span class="glyphicon glyphicon-th-list"></span>Table</a>
+      </a>
+
+    </div>
+  </div>
+
+  <h1>Countries</h1>
+
+  <div class="countries_wrapper">
+    <div id="grid-view-wrapper" class="country-index country-index-show">
+      <%= render partial: "grid_view" %>
+    </div>
+    <div id="table-view-wrapper" class="country-index">
+      <%= render partial: "table_view" %>
+    </div>
+    <div id="map-view-wrapper" class="country-index">
+      <%= render partial: "map_view" %>
+    </div>
+  </div>

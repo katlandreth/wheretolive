@@ -1,0 +1,38 @@
+<div id="countries" class="row list-group">
+  <% @current_results.each do |country| %>
+    <div class="item col-xs-4 col-lg-4">
+
+      <div class="thumbnail">
+        <div class="thumb-overlay">
+          <h4 class="thumbnail-header"><%= country[:name] %></h4>
+          <span class= "glyphicon glyphicon-signal"></span>
+          <span class="score"><%= country[:value]%></span>
+        </div>
+        <%= image_tag(country_image(country[:name]))%>
+      </div>
+
+      <div class="thumbnail-graph">
+        <h4 class="thumbnail-graph-header"><%= country[:name] %></h4>
+        <div class="thumb-graph-row life-satisfaction-bar">
+          <span class= "glyphicon glyphicon-signal"></span>
+          <div class="thumb-graph-wrapper">
+            <span class="thumb-graph-bar" style="width: <%= life_satisfaction_graph(country[:name]) %>"></span>
+          </div>
+        </div>
+        <div class="thumb-graph-row cost-of-living-bar">
+          <span class= "glyphicon glyphicon-piggy-bank"></span>
+          <div class="thumb-graph-wrapper">
+            <span class="thumb-graph-bar" style="width: <%= cost_of_living_graph(country[:name]) %>"></span>
+          </div>
+        </div>
+        <div class="thumb-graph-row freedom-of-press-bar">
+          <span class= "glyphicon glyphicon-certificate"></span>
+          <div class="thumb-graph-wrapper">
+            <span class="thumb-graph-bar" style="width: <%= freedom_of_press_graph(country[:name]) %>"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>

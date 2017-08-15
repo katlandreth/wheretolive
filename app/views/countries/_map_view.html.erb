@@ -1,0 +1,18 @@
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+<%= render partial: "shared/weight_sliders" %>
+
+<section class="map-navigation">
+  <%= render partial: 'category_tabs' %>
+</section>
+
+<div class="map_wrapper">
+  <div id="container" style="height:500px; width:100%;"></div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    initMap('<%= escape_javascript(@data.to_json.html_safe) %>', '<%= escape_javascript(@current_category.titleize)%>');
+  });
+</script>

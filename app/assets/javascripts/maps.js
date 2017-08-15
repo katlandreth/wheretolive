@@ -50,34 +50,34 @@ function initMap(data, category) {
       dataClasses: [{
         to: 0
       }, {
-        from: 1,
-        to: 10
+        from: 1.00,
+        to: 10.99
       }, {
-        from: 11,
-        to: 20
+        from: 11.00,
+        to: 20.99
       }, {
-        from: 21,
-        to: 30
+        from: 21.00,
+        to: 30.99
       }, {
-        from: 31,
-        to: 40
+        from: 31.00,
+        to: 40.99
       }, {
-        from: 41,
-        to: 50
+        from: 41.00,
+        to: 50.99
       }, {
-        from: 51,
-        to: 60
+        from: 51.00,
+        to: 60.99
       }, {
-        from: 61,
-        to: 70
+        from: 61.00,
+        to: 70.99
       }, {
-        from: 71,
-        to: 80
+        from: 71.00,
+        to: 80.99
       }, {
-        from: 81,
-        to: 90
+        from: 81.00,
+        to: 90.99
       }, {
-        from: 91,
+        from: 91.00,
         to: 100
       }]
     },

@@ -1,0 +1,23 @@
+#grid-view-wrapper,
+#table-view-wrapper,
+#map-view-wrapper {
+
+}
+
+.country-index.country-index-show {
+  opacity: 1;
+  height:auto;
+  overflow: auto;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.country-index {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}

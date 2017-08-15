@@ -1,0 +1,6 @@
+<ul class="nav nav-tabs">
+  <% @categories.each do |category| %>
+    <li role="presentation" class=<%= maps_tab_class(category, @current_category) %> > <%= map_category_link(category) %> </li>
+  <% end %>
+  <li role="presentation"><a data-toggle="collapse" href="#collapseWeightSliders" aria-expanded="false" aria-controls="collapseWeightSliders">Overall Rank</a></li>
+</ul>
