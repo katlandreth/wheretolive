@@ -1,6 +1,6 @@
 require 'csv'
 
-desc "import alias data from csv"
+desc "import alias data from csv - used after building the alias data in google refine"
 task alias_data: :environment do
   CSV.foreach("country_names_aliases.csv", headers: true) do |row|
     if country_alias = CountryAlias.find_by(name: row["raw_name"])

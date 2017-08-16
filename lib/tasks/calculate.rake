@@ -1,4 +1,4 @@
-desc 'scale raw country scores'
+desc 'linearly scale/normalize raw country scores'
 task calculate_scaled_scores: :environment do
 
   puts "Time to make the doughnuts..."

@@ -1,7 +1,7 @@
 require 'csv'
 
 namespace :export do
-  desc "export country names to csv"
+  desc "export all existing country names to csv - used when creating country name aliases"
   task country_names: :environment do
 
     file = "#{Rails.root}/country_names.csv"

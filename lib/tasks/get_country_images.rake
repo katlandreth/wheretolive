@@ -1,4 +1,4 @@
-desc 'get google image'
+desc 'do a google image search for each country name, pauses for user to select and download image'
 task get_country_images: :environment do
   driver = ::Selenium::WebDriver.for :chrome
   puts "Time to make the doughnuts..."
