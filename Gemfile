@@ -20,7 +20,12 @@ gem 'rails-assets-datatables.net-plugins', source: 'https://rails-assets.org'
 group :development, :test do
   gem 'byebug'
   gem 'rails-erd', require: false
-  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+end
+
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 group :development do

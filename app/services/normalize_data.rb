@@ -14,7 +14,6 @@ class NormalizeData
     target_range = (max - min).to_f
 
     scores.map! { |name, n| [name, ( min + (n - current_min) * (target_range / current_range) ).round(2)]}
-    byebug
     scores.to_h
   end
 
