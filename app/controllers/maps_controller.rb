@@ -10,7 +10,7 @@ class MapsController < ApplicationController
     @data = []
     @countries.each do |c|
       normal_rank = eval("c.#{category_name}") || 0
-      json_data = {code: c.code, value: normal_rank, name: c.name}
+      json_data = {code: c.country_code, value: normal_rank, name: c.name}
       @data.push(json_data)
     end
 
@@ -41,7 +41,7 @@ class MapsController < ApplicationController
         tooltip = ""
         score = weighted_categories.reduce(:+)/ weight_params.map{ |key, value| value.to_i }.reduce(:+)
       end
-      json_data = {code: country.code, value: score, name: country.name, tooltip: tooltip}
+      json_data = {code: country.country_code, value: score, name: country.name, tooltip: tooltip}
       @data.push(json_data)
     end
 

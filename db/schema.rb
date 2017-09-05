@@ -11,30 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814185309) do
+ActiveRecord::Schema.define(version: 20170829203326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "codes", force: :cascade do |t|
-    t.string "country_name"
-    t.string "value"
-  end
-
   create_table "countries", force: :cascade do |t|
-    t.integer  "population"
-    t.float    "latitude"
-    t.string   "name"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.float    "longitude"
-    t.string   "code"
-    t.float    "reading_score"
-    t.float    "science_score"
-    t.float    "math_score"
-    t.float    "life_satisfaction_score"
-    t.float    "freedom_of_press_score"
-    t.float    "cost_of_living_score"
+    t.integer "population"
+    t.string  "name"
+    t.string  "country_code"
+    t.float   "reading_score"
+    t.float   "science_score"
+    t.float   "math_score"
+    t.float   "life_satisfaction_score"
+    t.float   "freedom_of_press_score"
+    t.float   "cost_of_living_score"
+    t.float   "population_density"
   end
 
   create_table "country_aliases", force: :cascade do |t|
@@ -51,43 +43,22 @@ ActiveRecord::Schema.define(version: 20170814185309) do
 
   create_table "country_codes", force: :cascade do |t|
     t.string   "country_name"
-    t.string   "code"
+    t.string   "value"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  create_table "country_display_names", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "country_display_names", ["country_id"], name: "index_country_display_names_on_country_id", using: :btree
-
-  create_table "country_populations", force: :cascade do |t|
-    t.string   "country_name"
-    t.float    "data"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "populations", force: :cascade do |t|
+  create_table "country_population_densities", force: :cascade do |t|
     t.string "country_name"
     t.float  "value"
   end
 
-  create_table "ranks", force: :cascade do |t|
-    t.integer  "country_id"
-    t.float    "score"
-    t.string   "name"
-    t.string   "order"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "normalized_score"
+  create_table "country_populations", force: :cascade do |t|
+    t.string   "country_name"
+    t.float    "value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
-
-  add_index "ranks", ["country_id"], name: "index_ranks_on_country_id", using: :btree
 
   create_table "raw_cost_of_living_scores", force: :cascade do |t|
     t.string "country_name"
@@ -119,7 +90,4 @@ ActiveRecord::Schema.define(version: 20170814185309) do
     t.float  "score"
   end
 
-  add_foreign_key "country_aliases", "countries"
-  add_foreign_key "country_aliases", "country_display_names"
-  add_foreign_key "country_display_names", "countries"
 end

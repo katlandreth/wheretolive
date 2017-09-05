@@ -8,13 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
-    <nav class="navbar navbar-default" >
-      <ul class="nav navbar-nav">
-        <li><%= link_to "New", new_country_path %></li>
-        <li><%= link_to "Table", countries_path %></li>
-        <li><%= link_to "Map", maps_path %></li>
-      </ul>
-    </nav>
+    <%= render partial: "shared/nav"%>
     <div class="container">
       <%= yield %>
     </div>

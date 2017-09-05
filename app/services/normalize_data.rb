@@ -29,11 +29,20 @@ class NormalizeData
     table.constantize.pluck(:score).reject{ |r| r == 0 }.min
   end
 
-  def non_data_columns
-    ["id", "latitude", "name", "created_at", "updated_at", "longitude", "code"]
-  end
-
   def junk_data
     ["Selected countries and jurisdictions", "International Average (OECD)"]
   end
+
+  def self.attribute_name_from_raw_table(table)
+    table.underscore.gsub("raw_", "").to_sym
+  end
+
+  def self.attribute_name_from_country_data_table(table)
+    if table == "CountryCode"
+      table.underscore.to_sym
+    else
+      table.gsub("Country", "").underscore.to_sym
+    end
+  end
+  
 end

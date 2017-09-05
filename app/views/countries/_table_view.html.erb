@@ -18,7 +18,7 @@
     <% @countries.each do |c| %>
     <tr class="country">
       <td class="name"><%= link_to c.name, country_path(c.id) %></td>
-      <td class="code"><%= c.code %></td>
+      <td class="code"><%= c.country_code %></td>
       <td><%= number_with_delimiter(c.population, :delimiter => ',') %></td>
 
       <td><%= c.cost_of_living_score || "N/A" %></td>

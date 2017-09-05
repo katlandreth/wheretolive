@@ -68,7 +68,7 @@ class CountriesController < ApplicationController
         tooltip = ""
         score = weighted_categories.reduce(:+) / categories.count
       end
-      json_data = {code: country.code, value: score, name: country.name, tooltip: tooltip}
+      json_data = {code: country.country_code, value: score, name: country.name, tooltip: tooltip}
       @data.push(json_data)
     end
     @data

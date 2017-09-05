@@ -1,4 +1,7 @@
 class CountryAlias < ActiveRecord::Base
-  belongs_to :country_display_name
-  belongs_to :country
+
+  def self.country_display_name(raw_country_name)
+    find_by(name: raw_country_name).display_name
+  end
+
 end

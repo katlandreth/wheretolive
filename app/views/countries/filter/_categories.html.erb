@@ -1,0 +1,17 @@
+<h3>Categories To Include In Your Results</h3>
+<% Country.column_names.reject{ | c_name | (Country.non_data_columns).include?(c_name) }.each do |name|  %>
+<div class="category_switch_wrapper clearfix">
+  <div class="switch_label_wrapper col-md-7">
+    <%= "#{name.titleize}" %>
+  </div>
+
+  <div class="switch_wrapper col-md-5">
+    <span class="toggle_states">off</span>
+    <label class="switch">
+      <%= check_box_tag name %>
+      <span class="slider round"></span>
+    </label>
+    <span class="toggle_states">on</span>
+  </div>
+</div>
+<% end %>
