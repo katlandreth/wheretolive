@@ -1,5 +1,6 @@
 <div id="countries" class="row list-group">
   <% @current_results.each do |country| %>
+  <%= link_to country_path(Country.find_by(country_code: country[:code]).id) do %>
     <div class="item col-xs-4 col-lg-4">
 
       <div class="thumbnail">
@@ -34,5 +35,6 @@
       </div>
 
     </div>
+    <% end %>
   <% end %>
 </div>

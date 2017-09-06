@@ -27,6 +27,8 @@ $ivory-black: #1d2631;
   padding:0;
   border: none;
   border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.4);
 }
 
 .thumb-overlay {
@@ -94,10 +96,9 @@ div.thumb-graph-wrapper {
 }
 
 .item {
-  overflow: hidden;
   height: 250px;
   margin-bottom: 40px;
   &:hover .thumbnail-graph {
-    bottom: 270px; // the height of the thumbnail plus 20px margin
+    bottom: 290px; // the height of the thumbnail plus 20px margin
   }
 }

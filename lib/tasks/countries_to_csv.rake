@@ -5,7 +5,7 @@ namespace :export do
   task country_names: :environment do
 
     file = "#{Rails.root}/country_names.csv"
-    raw_tables = %w[RawReadingScore RawScienceScore RawMathScore RawLifeSatisfactionScore RawFreedomOfPressScore RawCostOfLivingScore CountryCode CountryPopulation CountryPopuationDensity]
+    raw_tables = %w[RawReadingScore RawScienceScore RawMathScore RawLifeSatisfactionScore RawFreedomOfPressScore RawCostOfLivingScore CountryCode CountryPopulation CountryPopulationDensity]
     column_headers = ["raw name", "preferred_name"]
 
     CSV.open(file, 'w', write_headers: true, headers: column_headers) do |writer|
