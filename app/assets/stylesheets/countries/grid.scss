@@ -96,8 +96,10 @@ div.thumb-graph-wrapper {
 }
 
 .item {
-  height: 250px;
+  height: 260px;
   margin-bottom: 40px;
+  // padding:5px;
+  overflow:hidden;
   &:hover .thumbnail-graph {
     bottom: 290px; // the height of the thumbnail plus 20px margin
   }

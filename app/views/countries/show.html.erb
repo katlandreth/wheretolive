@@ -1,1 +1,3 @@
+<%= link_to "Back", countries_path %>
 <h3><%= CountryAlias.country_display_name(@country.name) %></h3>
+<%= image_tag(country_image(@country.name), class: "show-country")%>
