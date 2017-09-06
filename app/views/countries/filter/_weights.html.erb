@@ -1,1 +1,6 @@
-<h3>Relative Category Importance</h3>
+<h3>How Important is Each Category?
+  <span id="weight-info-btn" type="button" class="glyphicon glyphicon-info-sign btn" data-container=".container" data-toggle="popover" title="How to Use Weights" data-html="true" data-content="<ul><li>Higher numbers give the category more weight (importance).</li><li>Category weights are relative to each other. Giving every category a weight of 1 will produce the same result as giving every category a weight of 10.</li><li>To remove a category, give it a weight of 0.</li><li>If a country is missing data for an included category (weight not equal to 0), that country will be excluded from the results.</li></ul>">
+ </span>
+</h3>
+
+<%= render partial: "shared/weight_sliders" %>

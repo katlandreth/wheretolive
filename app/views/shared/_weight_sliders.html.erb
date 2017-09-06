@@ -1,40 +1,33 @@
-<div id="collapseWeightSliders" class="collapse" >
-  <h2>How Important is Each Category?
-    <button type="button" class="btn btn-primary btn-circle" data-toggle="popover" title="How to Use Weights" data-html="true" data-content="<ul><li>Higher numbers give the category more weight (importance).</li><li>Category weights are relative to each other. Giving every category a weight of 1 will produce the same result as giving every category a weight of 10.</li><li>To remove a category, give it a weight of 0.</li><li>If a country is missing data for an included category (weight not equal to 0), that country will be excluded from the results.</li></ul>">
-      <span class="glyphicon glyphicon-info-sign"></span>
-   </button>
-  </h2>
+<%= form_for :category_weights, url: overall_rank_path, class: "container form-horizontal", remote: true do |f| %>
 
-  <%= form_for :category_weights, url: overall_rank_path, class: "container form-horizontal", remote: true do |f| %>
+  <% @categories.each do |category| %>
+    <div class="form-group">
+      <label for=<%= "#{category}_slider" %> class="col-md-6 control-label"><%= category.titleize %></label>
+      <div class="input-group col-md-6">
+        <%= f.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
 
-    <% @categories.each do |category| %>
-      <div class="form-group">
-        <label for=<%= "#{category}_slider" %> class="col-md-2 control-label"><%= category.titleize %></label>
-        <div class="input-group col-md-6">
-          <%= f.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
-
-          <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
-        </div>
+        <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
       </div>
-    <% end %>
-
-    <datalist id=<"slidersettings">
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-      <option>10</option>
-    </datalist>
-
-    <%= f.submit "Get Overall Rank", class: "btn btn-primary" %>
+    </div>
   <% end %>
-</div>
+
+  <datalist id=<"slidersettings">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </datalist>
+
+  <%= f.submit "Get Overall Rank", class: "btn btn-primary" %>
+<% end %>
+
 
 <script>
 $(function () {
