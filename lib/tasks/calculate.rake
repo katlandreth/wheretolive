@@ -2,11 +2,11 @@ desc 'linearly scale/normalize raw country scores'
 task calculate_scaled_scores: :environment do
 
   puts "Time to make the doughnuts..."
-  raw_tables = %w[RawReadingScore RawScienceScore RawMathScore RawLifeSatisfactionScore RawFreedomOfPressScore RawCostOfLivingScore]
+  raw_tables = RAWSCORETABLES
   raw_tables.each do |table|
     attribute = NormalizeData.attribute_name_from_raw_table(table)
 
-    scores = NormalizeData.new("country").normalized_category_ranks(table, table.constantize.raw_score_order)
+    scores = NormalizeData.new("country").normalized_category_scores(table.constantize.raw_score_order)
     scores.each do |raw_country_name, score|
 
       country_display_name = CountryAlias.country_display_name(raw_country_name)

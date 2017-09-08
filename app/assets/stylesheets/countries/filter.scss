@@ -122,3 +122,40 @@ input:checked + .slider:before {
 .slider.round:before {
  border-radius: 50%;
 }
+
+.category-range {
+  background: white;
+  padding:5px;
+}
+
+.category-range-row {
+  font-size: 0; /* collapse whitespace between inline-block elements */
+}
+
+.category-range-header {
+  line-height: 30px;
+  margin:0;
+}
+
+.category-range-wrapper {
+  display: inline-block;
+  width: 25%;
+  height:30px;
+  .low-range-bar {
+    background: rgba(255,200,0,0.25);
+  }
+  .medium-range-bar {
+    background: rgba(255,200,0,0.5);
+  }
+  .high-range-bar {
+    background: rgba(255,200,0,0.75);
+  }
+  .very-high-range-bar {
+    background: rgba(255,200,0,1);
+  }
+  [class$="-range-bar"] {
+    width:100%;
+    height:100%;
+    display: block;
+  }
+}

@@ -2,7 +2,7 @@ desc 'merge non-score country data from scrapes tables into appropriate Country 
 task merge_country_data: :environment do
 
   puts "Time to make the doughnuts..."
-  tables = %w[CountryCode CountryPopulation CountryPopulationDensity]
+  tables = RAWCOUNTRYDATATABLES
   tables.each do |table|
     attribute = NormalizeData.attribute_name_from_country_data_table(table)
     table.constantize.all.each do |raw_country|

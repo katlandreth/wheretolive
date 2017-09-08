@@ -34,4 +34,8 @@ module CountriesHelper
       when large then puts "large"
     end
   end
+
+  def attribute_name
+    "something"
+  end
 end

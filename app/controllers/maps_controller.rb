@@ -54,7 +54,7 @@ class MapsController < ApplicationController
   private
 
   def get_categories
-    @categories = %w[reading_score science_score math_score life_satisfaction_score freedom_of_press_score cost_of_living_score]
+    @categories = CATEGORIES
   end
 
   def current_category
