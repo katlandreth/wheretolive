@@ -45,4 +45,9 @@ class NormalizeData
     end
   end
 
+  def self.average_education_score(scores)
+    scores = scores.compact
+    average = (scores.reduce(:+) / scores.count).round(2) unless scores.empty?
+  end
+
 end
