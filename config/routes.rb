@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
    resources :countries
    get 'maps' => 'maps#show', as: :maps
+   get 'overall_rank' => 'maps#overall_rank', as: :get_overall_rank
    post 'overall_rank' => 'countries#overall_rank', as: :overall_rank
 
    post 'grid_view' => 'countries#grid_view', as: :grid_view

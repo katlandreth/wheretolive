@@ -5,6 +5,14 @@ class Country < ActiveRecord::Base
     ["id", "created_at", "updated_at", "name", "country_code"]
   end
 
+  def education_score
+    NormalizeData.average_education_score([
+      self.reading_score,
+      self.math_score,
+      self.science_score
+      ])
+  end
+
   def range(attribute)
     first, last, twentyfifth, fiftieth, seventyfifth = percentiles(attribute)
       case self.send(attribute)

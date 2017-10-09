@@ -50,9 +50,7 @@ private
 
 def default_weights
   {
-    "reading_score_value" => 5,
-    "science_score_value" => 5,
-    "math_score_value" => 5,
+    "education_score_value" => 5,
     "life_satisfaction_score_value" => 5,
     "freedom_of_press_score_value" => 5,
     "cost_of_living_score_value" => 5

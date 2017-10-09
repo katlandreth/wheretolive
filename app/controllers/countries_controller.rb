@@ -47,7 +47,7 @@ class CountriesController < ApplicationController
   end
 
   def country_params
-    params.require(:country).permit(:name, :population, :cost_of_living_score, :life_satisfaction_score, :math_score, :science_score, :reading_score, :freedom_of_press_score)
+    params.require(:country).permit(:name, :population, :cost_of_living_score, :life_satisfaction_score, :education_score, :freedom_of_press_score)
   end
 
   def lookup_country

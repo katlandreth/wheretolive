@@ -58,7 +58,7 @@ class MapsController < ApplicationController
   end
 
   def current_category
-    @current_category = params[:category] || "life_satisfaction_score"
+    @current_category = params[:category] || "overall_rank"
   end
 
   def weight_params
