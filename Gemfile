@@ -15,6 +15,7 @@ gem 'highcharts-rails'
 gem 'rails-assets-datatables.net', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables.net-bs', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables.net-plugins', source: 'https://rails-assets.org'
+gem 'jquery-ui-rails'
 
 
 group :development, :test do
