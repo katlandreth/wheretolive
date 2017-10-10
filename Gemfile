@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3'
+
 gem 'rails', '4.2.6'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -16,6 +18,7 @@ gem 'rails-assets-datatables.net', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables.net-bs', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables.net-plugins', source: 'https://rails-assets.org'
 gem 'jquery-ui-rails'
+gem 'puma', '~> 3.0'
 
 
 group :development, :test do

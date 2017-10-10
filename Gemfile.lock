@@ -101,6 +101,7 @@ GEM
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
+    puma (3.1.0)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -224,6 +225,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   pg
+  puma (~> 3.0)
   rails (= 4.2.6)
   rails-assets-datatables.net!
   rails-assets-datatables.net-bs!
