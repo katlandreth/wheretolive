@@ -1,7 +1,7 @@
 module CountriesHelper
 
   def country_image(country_name)
-    "https://s3-us-west-2.amazonaws.com/nerdyliving-expatapp/country_images/#{country_name.delete(" ")}.jpg"
+    "https://s3-us-west-2.amazonaws.com/nerdyliving-expatapp/country-images/#{country_name.delete(" ")}.jpg"
   end
 
   def cost_of_living_graph(country_name)
