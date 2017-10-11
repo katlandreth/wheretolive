@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
 
   def index
     @countries = Country.all
-    @current_results = params[:current_results] || default_results.reject{|v| v[:value] == 0 }.sort_by {|v|  v[:value]}
+    @current_results = default_results.reject{|v| v[:value] == 0 }.sort_by {|v|  v[:value]}
     @rank_json_data = Array.new.push( @countries.each { |c| c.as_json(only: [:name, :code]) } )
   end
 
@@ -37,6 +37,10 @@ class CountriesController < ApplicationController
     puts "getting the overall rank"
     @current_category = "overall_rank"
     @data = FilterAndSort.new(weight_params).weighted_scores
+    @countries = Country.all
+    @current_results = @data.reject{ |d| d[:value] == 0 }.sort_by { |v|  v[:value] }
+    @rank_json_data = Array.new.push( @countries.each { |c| c.as_json(only: [:name, :code]) } )
+    respond_to_js
   end
 
 

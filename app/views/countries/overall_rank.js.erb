@@ -1,0 +1,8 @@
+$("#grid-view-wrapper").html("<%= escape_javascript(render partial: 'grid_view', locals: { data: @data }) %>");
+
+$("#table-view-wrapper").html("<%= escape_javascript(render partial: 'table_view', locals: { data: @data }) %>");
+
+$(".map-navigation").html("<%= escape_javascript(render partial: 'maps/map_nav_list', locals: {current_category: @current_category, categories: @categories})%>");
+$(".map_wrapper").html("<%= escape_javascript(render partial: 'maps/map', locals: { data: @data }) %>");
+
+initMap('<%= escape_javascript(@data.to_json.html_safe) %>', '<%= escape_javascript(@current_category.titleize)%>');
