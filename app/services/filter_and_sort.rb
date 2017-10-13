@@ -1,6 +1,6 @@
 class FilterAndSort
 
-  def initialize(weight_params = default_weights, match_hash = nil)
+  def initialize(weight_params: default_weights, match_hash: nil)
     @weight_params = weight_params
     @categories = include_categories
     @countries = exclude_matching_places(match_hash)
