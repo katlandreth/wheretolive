@@ -35,7 +35,28 @@ module CountriesHelper
     end
   end
 
-  def attribute_name
-    "something"
+  def attribute_name(category)
+    "Categories::#{category.camelize}".constantize.category_name
   end
+
+  def slider_div_id(category)
+    "Categories::#{category.camelize}".constantize.slider_div_id
+  end
+
+  def slider_input_id(category)
+    "Categories::#{category.camelize}".constantize.slider_input_id
+  end
+
+  def slider_catgory_data(category)
+    category_class = "Categories::#{category.camelize}".constantize
+    @ruby_data = {
+      slider_min: category_class.slider_min,
+      slider_max: category_class.slider_max,
+      slider_initial_values: category_class.slider_initial_values,
+      slider_div_id: "#" + category_class.slider_div_id,
+      slider_input_id: "#" + category_class.slider_input_id
+    }
+  end
+
+
 end

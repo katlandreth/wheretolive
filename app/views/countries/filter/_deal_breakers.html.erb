@@ -1,18 +1,54 @@
 <h3>Exclude Countries That Match These Parameters</h3>
   <p>You can include or exclude countries with certain scores here.</p>
 
-<div class="row">
-  <div class="category-range clearfix">
-    <div class="col-md-6">
-      <h4 class="category-range-header"><%= attribute_name %></h4>
+<form>
+  <% CATEGORIES.each do |category| %>
+    <div class="row">
+      <div class="category-range clearfix">
+        <div class="col-md-6">
+          <h4 class="category-range-header"><%= attribute_name(category) %></h4>
+        </div>
+        <div class="col-md-6">
+          <input type="hidden" id="<%= slider_input_id(category) %>">
+
+          <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
+        </div>
+      </div>
     </div>
 
-    <div id="slider">
-    </div>
-    
-    <form>
-      <input type="hidden" id="data1">
-      <input type="hidden" id="data2">
-    </form>
-  </div>
-</div>
+  <% end %>
+</form>
+
+
+<script>
+  $(document).ready(function(){
+    <% CATEGORIES.each do |category| %>
+      var json_object = <%= slider_catgory_data(category).to_json.html_safe %>;
+
+      function initCategoryRangeSlider(category) {
+        $( category.slider_div_id ).slider({
+          range: true,
+          min: category.slider_min,
+          max: category.slider_max,
+          values: category.slider_initial_values,
+          slide: function( event, ui ) {
+            $( category.slider_input_id ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            $(ui.handle).find('.range_tooltip').text(ui.value);
+          },
+          create: function(event, ui) {
+    	       var tooltip = $('<div class="range_tooltip" />');
+    	       $(event.target).find('.ui-slider-handle').append(tooltip);
+          },
+    	    change: function(event, ui) {
+    	       $('#hidden').attr('value', ui.value);
+    	    }
+        });
+
+        $( category.slider_input_id ).val( $( category.slider_div_id ).slider( "values", 0 ) +
+          " - " + $( category.slider_div_id ).slider( "values", 1 ) );
+      };
+
+      initCategoryRangeSlider(json_object);
+    <% end %>
+  });
+</script>
