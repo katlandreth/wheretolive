@@ -68,6 +68,11 @@ class CountriesController < ApplicationController
     params.require(:category_weights).permit(permitted)
   end
 
+  def weight_params
+    permitted = @categories.map { |category| category + "_range" }
+    params.require(:category_deal_breakers).permit(permitted)
+  end
+
   def respond_to_js
     respond_to do |format|
       format.html
