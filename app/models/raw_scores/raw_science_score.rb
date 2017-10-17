@@ -1,4 +1,4 @@
-class RawScienceScore < ActiveRecord::Base
+class RawScores::RawScienceScore < ActiveRecord::Base
 
   def self.raw_score_order
     "desc"

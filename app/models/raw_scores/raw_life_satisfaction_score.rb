@@ -1,4 +1,4 @@
-class RawLifeSatisfactionScore < ActiveRecord::Base
+class RawScores::RawLifeSatisfactionScore < ActiveRecord::Base
 
   def self.raw_score_order
     "desc"
