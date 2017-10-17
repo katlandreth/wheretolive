@@ -36,25 +36,41 @@ module CountriesHelper
   end
 
   def attribute_name(category)
-    "Categories::#{category.camelize}".constantize.category_name
+    category_class(category).category_name
   end
 
   def slider_div_id(category)
-    "Categories::#{category.camelize}".constantize.slider_div_id
+    category_class(category).slider_div_id
   end
 
-  def slider_input_id(category)
-    "Categories::#{category.camelize}".constantize.slider_input_id
+  def slider_input_min_id(category)
+    category_class(category).slider_input_id + "_min"
+  end
+
+  def slider_input_max_id(category)
+    category_class(category).slider_input_id + "_max"
+  end
+
+  def category_class(category)
+    "Categories::#{category.camelize}".constantize
+  end
+
+  def slider_min(category)
+    category_class(category).slider_min
+  end
+
+  def slider_max(category)
+    category_class(category).slider_max
   end
 
   def slider_catgory_data(category)
-    category_class = "Categories::#{category.camelize}".constantize
     @ruby_data = {
-      slider_min: category_class.slider_min,
-      slider_max: category_class.slider_max,
-      slider_initial_values: category_class.slider_initial_values,
-      slider_div_id: "#" + category_class.slider_div_id,
-      slider_input_id: "#" + category_class.slider_input_id
+      slider_min: category_class(category).slider_min,
+      slider_max: category_class(category).slider_max,
+      slider_initial_values: category_class(category).slider_initial_values,
+      slider_div_id: "#" + category_class(category).slider_div_id,
+      slider_input_min_id: "#" + slider_input_min_id(category),
+      slider_input_max_id: "#" + slider_input_max_id(category)
     }
   end
 

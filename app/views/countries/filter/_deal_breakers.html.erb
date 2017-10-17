@@ -1,5 +1,4 @@
 <h3>Exclude Countries That Match These Parameters</h3>
-  <p>You can include or exclude countries with certain scores here.</p>
 
 <form>
   <% CATEGORIES.each do |category| %>
@@ -9,9 +8,19 @@
           <h4 class="category-range-header"><%= attribute_name(category) %></h4>
         </div>
         <div class="col-md-6">
-          <input type="hidden" id="<%= slider_input_id(category) %>">
-
-          <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
+          <div class="row range_input_row">
+            <div class="col-md-3 range_min">
+              <%= number_field(attribute_name(category).to_sym, :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
+            </div>
+            <div class="col-md-3 col-md-offset-6 range_max">
+              <%= number_field(attribute_name(category).to_sym, :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -22,33 +31,42 @@
 
 <script>
   $(document).ready(function(){
-    <% CATEGORIES.each do |category| %>
-      var json_object = <%= slider_catgory_data(category).to_json.html_safe %>;
+    <% CATEGORIES.each do |cat_name| %>
+      var <%= cat_name + "_data" %> = <%= slider_catgory_data(cat_name).to_json.html_safe %>;
 
       function initCategoryRangeSlider(category) {
+
         $( category.slider_div_id ).slider({
           range: true,
           min: category.slider_min,
           max: category.slider_max,
           values: category.slider_initial_values,
           slide: function( event, ui ) {
-            $( category.slider_input_id ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-            $(ui.handle).find('.range_tooltip').text(ui.value);
+            $( category.slider_input_min_id ).val( ui.values[ 0 ] );
+            $( category.slider_input_max_id ).val( ui.values[ 1 ] );
           },
-          create: function(event, ui) {
-    	       var tooltip = $('<div class="range_tooltip" />');
-    	       $(event.target).find('.ui-slider-handle').append(tooltip);
-          },
-    	    change: function(event, ui) {
-    	       $('#hidden').attr('value', ui.value);
-    	    }
         });
-
-        $( category.slider_input_id ).val( $( category.slider_div_id ).slider( "values", 0 ) +
-          " - " + $( category.slider_div_id ).slider( "values", 1 ) );
+        var init_min = $(category.slider_input_min_id).val() || $( category.slider_div_id ).slider( "values", 0 );
+        var init_max = $(category.slider_input_max_id).val() || $( category.slider_div_id ).slider( "values", 1 );
+        $( category.slider_input_min_id ).val( init_min );
+        $( category.slider_input_max_id ).val( init_max );
       };
 
-      initCategoryRangeSlider(json_object);
+      function update_slider(category){
+        var min_value = $(category.slider_input_min_id).val() || category.slider_min;
+        var max_value = $(category.slider_input_max_id).val() || category.slider_max;
+
+        $(category.slider_div_id).slider( "values", "0", parseInt(min_value) );
+        $(category.slider_div_id).slider( "values", "1", parseInt(max_value) );
+      }
+
+      initCategoryRangeSlider(<%= cat_name + "_data" %>);
+      update_slider(<%= cat_name + "_data" %>);
+
+      $(<%= cat_name + "_data" %>.slider_input_min_id).change(function(event){
+        update_slider(<%= cat_name + "_data" %>);
+      })
+
     <% end %>
   });
 </script>

@@ -36,7 +36,7 @@ class CountriesController < ApplicationController
   def overall_rank
     puts "getting the overall rank"
     @current_category = "overall_rank"
-    @data = FilterAndSort.new(weight_params).weighted_scores
+    @data = FilterAndSort.new(weight_params, match_hash).weighted_scores
     @countries = Country.all
     @current_results = @data.reject{ |d| d[:value] == 0 }.sort_by { |v|  v[:value] }
     @rank_json_data = Array.new.push( @countries.each { |c| c.as_json(only: [:name, :code]) } )

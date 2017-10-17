@@ -128,7 +128,8 @@ input:checked + .slider:before {
 
 .category-range {
   background: white;
-  padding:5px;
+  padding:10px;
+  margin-bottom:10px;
 }
 
 .category-range-row {
@@ -141,7 +142,6 @@ input:checked + .slider:before {
 }
 
 .range_slider{
-	width: 220px;
 	position: absolute;
 	height: 10px;
 	background: url('https://s12.postimg.org/86n3b78p9/range_before.png') repeat top left;
@@ -175,7 +175,7 @@ input:checked + .slider:before {
 }
 
 .range_slider.ui-slider .ui-slider-range {
-	background: url('https://s12.postimg.org/qq1dousb1/range_filled.png') no-repeat;
+	background: url('https://s12.postimg.org/qq1dousb1/range_filled.png') no-repeat center/cover;
 	position: absolute;
 	border: 0;
 	top: 0;
@@ -190,4 +190,14 @@ input:checked + .slider:before {
 	font-family: Arial;
 	font-size: 16px;
 	color: #959595;
+}
+
+.range_min input,
+.range_max input {
+  display: inline-block;
+  width:100%;
+}
+
+.range_input_row {
+  margin-bottom: 10px;
 }
