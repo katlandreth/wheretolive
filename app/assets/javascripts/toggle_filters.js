@@ -12,6 +12,10 @@ $(function() {
     $('div[id^=category]').not('#category_weights').addClass("hide-filter");
     $('#category_weights').toggleClass("hide-filter");
   });
+
+  $('#submit-filter-button').click(function(){
+    $('div[id^=category]').addClass("hide-filter");
+  })
 })
 
 
@@ -19,7 +23,7 @@ $(document).ready(function(){
   $('body').on('click', '.btn.active', function(e){
       e.stopImmediatePropagation();
       e.preventDefault();
-      
+
       $(this).removeClass('active');
       $('input:radio[name="options"]', this).prop('checked', false);
   })
