@@ -201,3 +201,16 @@ input:checked + .slider:before {
 .range_input_row {
   margin-bottom: 10px;
 }
+
+/* make filter buttons clickable on iOS devices */
+
+
+#showCategorySwitches{
+  cursor:pointer;
+}
+#showCategoryDealBreakers{
+  cursor:pointer;
+}
+#showCategoryWeights{
+  cursor:pointer;
+}
