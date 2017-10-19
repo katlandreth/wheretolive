@@ -213,3 +213,16 @@ input:checked + .slider:before {
 #showCategoryWeights{
   cursor:pointer;
 }
+
+
+/* Media Querries */
+
+
+@media (max-width: 740px) {
+
+  .range_slider.ui-slider .ui-slider-handle {
+    width: 30px;
+  	height: 30px;
+    top: -10px;
+  }
+}
