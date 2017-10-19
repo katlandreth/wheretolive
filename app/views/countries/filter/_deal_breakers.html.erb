@@ -1,7 +1,8 @@
 <h3>Exclude Countries That Match These Parameters</h3>
 
-<%= form_for :category_deal_breakers, url: overall_rank_path, remote: true do |f| %>
-  <% CATEGORIES.each do |category| %>
+<% CATEGORIES.each do |category| %>
+
+  <%= f.fields_for category.to_sym do |c|%>
     <div class="row">
       <div class="category-range clearfix">
         <div class="col-md-6">
@@ -10,10 +11,10 @@
         <div class="col-md-6">
           <div class="row range_input_row">
             <div class="col-md-3 range_min">
-              <%= f.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
+              <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
             </div>
             <div class="col-md-3 col-md-offset-6 range_max">
-              <%= f.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
+              <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
             </div>
           </div>
           <div class="row">
@@ -24,11 +25,9 @@
         </div>
       </div>
     </div>
-
   <% end %>
-  <%= f.submit %>
-<% end %>
 
+<% end %>
 
 <script>
   $(document).ready(function(){

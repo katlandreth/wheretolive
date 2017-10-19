@@ -14,8 +14,8 @@ class FilterAndSort
     @countries = Country.all
       if match_hash != nil
         match_hash.each do |attribute, value_range|
-          start, finish = attribute.camelize.constantize.send("#{value_range}")
-          @countries = @countries.where.not("#{attribute} BETWEEN ? AND ?", start, finish)
+          start, finish = value_range[0], value_range[1]
+          @countries = @countries.where("#{attribute} BETWEEN ? AND ?", start, finish)
         end
       end
     @countries

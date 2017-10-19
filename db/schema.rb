@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829203326) do
+ActiveRecord::Schema.define(version: 20171018063655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170829203326) do
     t.float   "freedom_of_press_score"
     t.float   "cost_of_living_score"
     t.float   "population_density"
+    t.float   "education_score"
   end
 
   create_table "country_aliases", force: :cascade do |t|
