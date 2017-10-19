@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/geothird/touchpunch-rails.git
+  revision: e43d17ca145362479073f31feade819c7733a648
+  ref: e43d17ca145362479073f31feade819c7733a648
+  specs:
+    touchpunch-rails (1.0.3)
+      railties (>= 3.1)
+
+GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: 4b160bd19ecca7f97d7ac22dccd5fde9b0da5a9f
   branch: rails-5
@@ -243,6 +251,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers!
   spring
+  touchpunch-rails!
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

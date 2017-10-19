@@ -19,6 +19,10 @@ gem 'rails-assets-datatables.net-bs', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables.net-plugins', source: 'https://rails-assets.org'
 gem 'jquery-ui-rails'
 gem 'puma', '~> 3.0'
+gem "touchpunch-rails",
+  git: "https://github.com/geothird/touchpunch-rails.git",
+  ref: "e43d17ca145362479073f31feade819c7733a648"
+
 
 
 group :development, :test do
