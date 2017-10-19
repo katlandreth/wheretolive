@@ -1,7 +1,6 @@
 module CountriesHelper
 
   def country_image(country_name)
-    # "https://s3-us-west-2.amazonaws.com/nerdyliving-expatapp/country-images/#{country_name.delete(" ")}.jpg"
     "https://d2yfsb5dj83499.cloudfront.net/country-images/#{country_name.delete(" ")}.jpg"
   end
 

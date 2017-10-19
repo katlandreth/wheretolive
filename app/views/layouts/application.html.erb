@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Howtoliveapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -11,7 +12,7 @@
 
     <div class="container">
       <%= render partial: "shared/nav"%>
-      
+
       <%= yield %>
     </div>
   </body>
