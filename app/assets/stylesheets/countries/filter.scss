@@ -25,7 +25,8 @@
   overflow:hidden;
   position:absolute;
   height:500px;
-  padding:5px;
+  width:100%;
+  padding:10px;
 }
 
 .toggle_states {
@@ -43,9 +44,6 @@
   }
 }
 
-.switch_label_wrapper {
-}
-
 .category_switch_wrapper {
   display: flex;
   align-items: center;
@@ -61,6 +59,7 @@
     text-align:center;
   }
 }
+
 /* The switch - the box around the slider */
 .switch {
  position: relative;
