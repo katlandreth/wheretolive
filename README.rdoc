@@ -28,6 +28,7 @@ pg_dump -Fc --no-acl --no-owner -h localhost -U howtolive_root howtolive_develop
 
 Upload the dump to S3, grab the link, then import:
 
+heroku pg:backups:restore 'https://s3-us-west-2.amazonaws.com/nerdyliving-expatapp/database-dumps/expatapp_local.dump' DATABASE_URL
 
 My initial attempt at importing resulted in an error "Could not connect to database to initialize transfer"
 
