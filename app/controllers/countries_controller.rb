@@ -34,7 +34,6 @@ class CountriesController < ApplicationController
   end
 
   def overall_rank
-    puts "getting the overall rank"
     @current_category = "overall_rank"
     @data = FilterAndSort.new(weight_params: weight_params, match_hash: deal_breaker_params).weighted_scores
     @countries = Country.all
@@ -44,14 +43,50 @@ class CountriesController < ApplicationController
   end
 
 
-  private
-
-  def current_results
-    params[:current_results].reject{|v| v[:value] == 0 }.sort_by {|v|  v[:value]}
+  def category_filter
+    @categories = category_params.select{|k, v| v == "1"}.keys
+    session[:categories] = @categories
+    respond_to_js
   end
+
+
+  private
 
   def country_params
     params.require(:country).permit(:name, :population, :cost_of_living_score, :life_satisfaction_score, :education_score, :freedom_of_press_score)
+  end
+
+  def category_params
+    params.require(:category_filter).permit(CATEGORIES)
+  end
+
+  def weight_params
+    rank_params[:weights]
+  end
+
+  def deal_breaker_params
+    categories = @categories
+    deal_breakers = {}
+    @categories.each{ |cat| deal_breakers[cat] = rank_params[cat]["min"], rank_params[cat]["max"] }
+    deal_breakers
+  end
+
+  def rank_params
+    deal_breaker_range_params = @categories.map{ |cat| "#{cat.to_sym} => ['min', 'max']" }.join(",")
+    weight_value_params = @categories.map{ |cat| cat + "_value" }
+    params.require(:overall_rank).permit(
+      weights:["education_score_value", "life_satisfaction_score_value", "freedom_of_press_score_value", "cost_of_living_score_value", "population", "population_density"],
+      education_score:['min', 'max'],
+      life_satisfaction_score:['min', 'max'],
+      freedom_of_press_score:['min', 'max'],
+      cost_of_living_score:['min', 'max'],
+      population:['min', 'max'],
+      population_density:['min', 'max']
+    )
+  end
+
+  def current_results
+    params[:current_results].reject{|v| v[:value] == 0 }.sort_by {|v|  v[:value]}
   end
 
   def lookup_country
@@ -63,30 +98,6 @@ class CountriesController < ApplicationController
     @data = FilterAndSort.new().weighted_scores
   end
 
-  def rank_params
-    deal_breaker_range_params = @categories.map{ |cat| "#{cat.to_sym} => ['min', 'max']" }.join(",")
-    weight_value_params = @categories.map{ |cat| cat + "_value" }
-    params.require(:overall_rank).permit(
-      weights:["education_score_value", "life_satisfaction_score_value", "freedom_of_press_score_value", "cost_of_living_score_value"],
-      education_score:['min', 'max'],
-      life_satisfaction_score:['min', 'max'],
-      freedom_of_press_score:['min', 'max'],
-      cost_of_living_score:['min', 'max']
-    )
-  end
-
-  def weight_params
-    permitted = @categories.map { |category| category + "_value" }.join(",")
-    rank_params[:weights]
-  end
-
-  def deal_breaker_params
-    categories = CATEGORIES.map{ |cat| "#{cat.to_sym} => ['min', 'max']" }
-    deal_breakers = {}
-    @categories.each{ |cat| deal_breakers[cat] = rank_params[cat]["min"], rank_params[cat]["max"] }
-    deal_breakers
-  end
-
   def respond_to_js
     respond_to do |format|
       format.html
@@ -95,6 +106,14 @@ class CountriesController < ApplicationController
   end
 
   def categories
-    @categories = CATEGORIES
+    @categories = session[:categories] || default_categories
+  end
+
+  def selected_categories
+    category_params
+  end
+
+  def default_categories
+    %w[education_score life_satisfaction_score freedom_of_press_score cost_of_living_score]
   end
 end

@@ -9,12 +9,11 @@
     <div class="switch_wrapper col-md-5">
       <span class="toggle_states">off</span>
       <label class="switch">
-        <%= check_box_tag name %>
+        <%= f.check_box name %>
         <span class="slider round"></span>
       </label>
       <span class="toggle_states">on</span>
     </div>
   </div>
   <% end %>
-
-  
+<%= f.submit %>

@@ -1,6 +1,6 @@
 <h3>Exclude Countries That Match These Parameters</h3>
 
-<% CATEGORIES.each do |category| %>
+<% @categories.each do |category| %>
 
   <%= f.fields_for category.to_sym do |c|%>
     <div class="row">
@@ -10,10 +10,10 @@
         </div>
         <div class="col-md-6">
           <div class="row range_input_row">
-            <div class="col-md-3 range_min">
+            <div class="col-md-6 range_min">
               <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
             </div>
-            <div class="col-md-3 col-md-offset-6 range_max">
+            <div class="col-md-6 range_max">
               <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
             </div>
           </div>

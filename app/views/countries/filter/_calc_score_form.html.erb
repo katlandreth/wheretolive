@@ -1,0 +1,8 @@
+<%= form_for :overall_rank, url: overall_rank_path, html:{ class: "row form-horizontal" }, remote: true do |f| %>
+  <div id="category_deal_breakers" class="col-md-12 deal_breakers filter-section hide-filter">
+    <%= render "countries/filter/deal_breakers", f: f  %>
+  </div>
+  <div id="category_weights" class="col-md-12 category_weights filter-section hide-filter">
+    <%= render "countries/filter/weights", f: f  %>
+  </div>
+<% end %>
