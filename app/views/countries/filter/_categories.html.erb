@@ -1,6 +1,6 @@
 <h3>Categories To Include In Your Results</h3>
 
-  <% Country.column_names.reject{ | c_name | (Country.non_data_columns).include?(c_name) }.each do |name|  %>
+  <% CATEGORIES.each do |name|  %>
   <div class="category_switch_wrapper clearfix">
     <div class="switch_label_wrapper col-md-7">
       <%= "#{name.titleize}" %>
@@ -16,3 +16,5 @@
     </div>
   </div>
   <% end %>
+
+  
