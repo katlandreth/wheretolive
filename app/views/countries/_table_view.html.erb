@@ -8,8 +8,7 @@
     <td>Life Satisfaction Rank</td>
     <td>Freedom of Press Rank</td>
     <td>Education Rank</td>
-    <td>Edit</td>
-    <td>Delete</td>
+    <td>Overall Score</td>
   </thead>
 
   <tbody>
@@ -22,9 +21,8 @@
       <td><%= c.cost_of_living_score || "N/A" %></td>
       <td><%= c.life_satisfaction_score || "N/A" %></td>
       <td><%= c.freedom_of_press_score || "N/A" %></td>
-      <td><%= NormalizeData.average_education_score([c.reading_score, c.math_score, c.science_score]) || "N/A" %></td>
-      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), edit_country_path(c.id), class: "btn btn-primary"%></td>
-      <td><%= link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), { action: :destroy, id: c.id }, method: :delete, class: "btn btn-danger" %></td>
+      <td><%= c.education_score || "N/A" %></td>
+      <td><%= overall_score(c.name, @current_results) || "N/A" %></td>
     </tr>
     <% end %>
   </tbody>
@@ -34,15 +32,16 @@
 
 <script>
 var numbersType = $.fn.dataTable.absoluteOrderNumber([{
-value: 'N/A',
-position: 'bottom'
+  value: 'N/A',
+  position: 'bottom'
 }]);
 
 $('.datatable').dataTable({
-columnDefs: [{
-  type: numbersType,
-  targets: [2, 3, 4, 5, 6, 7, 8]
-}]
+  order: [[ 7, "asc" ]],
+  columnDefs: [{
+    type: numbersType,
+    targets: [2, 3, 4, 5, 6, 7]
+  }]
 });
 
 

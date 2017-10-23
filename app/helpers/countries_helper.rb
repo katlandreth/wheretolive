@@ -86,5 +86,11 @@ module CountriesHelper
     }
   end
 
+  def overall_score(country_name, current_results)
+    if result = current_results.find{|result| result[:name] == country_name}
+      result[:value]
+    end
+  end
+
 
 end

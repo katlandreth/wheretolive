@@ -64,3 +64,92 @@ $pulse-duration: 750ms;
     animation-delay: ($pulse-duration / 1.5);
   }
 }
+
+
+/* Bubble Chart */
+
+.bubble-chart-wrapper {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.all-bubble{
+  width: 100%;
+  height: 100%;
+  background: rgba(7, 91, 161, .20);
+  border-radius: 50%;
+  &:before {
+    content:"266";
+    position: absolute;
+    width:100%;
+    text-align: center;
+    color:#333;
+  }
+}
+
+
+.inner-bubble,
+.innermost-bubble {
+  background: rgba(7, 91, 161, .20);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+.inner-bubble {
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  &:before {
+    content:"72";
+    position: absolute;
+    width:100%;
+    text-align: center;
+    color: #333;
+  }
+}
+
+.innermost-bubble {
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  &:before {
+    content:"10";
+    position: absolute;
+    width:100%;
+    text-align: center;
+    color:#333;
+  }
+}
+
+.bubble-label {
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.first-label{
+  &:after{
+    content:"";
+    width:130%;
+    position:absolute;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.second-label{
+  &:after{
+    content:"";
+    width:130%;
+    position:absolute;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.third-label{
+  &:after{
+    content:"";
+    width:130%;
+    position:absolute;
+    border-bottom: 1px solid #ccc;
+  }
+}
