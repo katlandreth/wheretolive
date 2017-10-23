@@ -64,7 +64,7 @@ module CountriesHelper
   end
 
   def category_class(category)
-    "Categories::#{category.camelize}".constantize
+    "Country::Category::#{category.camelize}".constantize
   end
 
   def slider_min(category)

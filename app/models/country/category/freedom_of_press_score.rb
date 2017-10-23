@@ -1,4 +1,4 @@
-class Categories::FreedomOfPressScore
+class Country::Category::FreedomOfPressScore
 
   def self.slider_min
     Country.pluck(:freedom_of_press_score).reject{|s| s == nil}.min

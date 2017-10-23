@@ -1,4 +1,4 @@
-class Categories::LifeSatisfactionScore
+class Country::Category::LifeSatisfactionScore
 
   def self.slider_min
     Country.pluck(:life_satisfaction_score).reject{|s| s == nil }.min

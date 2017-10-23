@@ -1,4 +1,4 @@
-class Categories::CostOfLivingScore
+class Country::Category::CostOfLivingScore
 
   def self.slider_min
     Country.pluck(:cost_of_living_score).reject{|s| s == nil}.min

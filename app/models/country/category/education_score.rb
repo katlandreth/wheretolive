@@ -1,4 +1,4 @@
-class Categories::EducationScore
+class Country::Category::EducationScore
 
   def self.slider_min
     all_education_scores.min
