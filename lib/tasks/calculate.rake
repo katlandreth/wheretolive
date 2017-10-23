@@ -9,7 +9,7 @@ task calculate_scaled_scores: :environment do
     scores = NormalizeData.new("country").normalized_category_scores(table.constantize.raw_score_order)
     scores.each do |raw_country_name, score|
 
-      country_display_name = CountryAlias.country_display_name(raw_country_name)
+      country_display_name = Country::Alias.country_display_name(raw_country_name)
 
       if country = Country.find_by(name: country_display_name)
         puts "updating " + country_display_name + " " + score.to_s

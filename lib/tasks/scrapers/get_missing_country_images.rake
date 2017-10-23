@@ -3,7 +3,7 @@ task get_missing_country_images: :environment do
   driver = ::Selenium::WebDriver.for :chrome
   puts "Time to make the doughnuts..."
 
-  display_names =  CountryAlias.distinct.pluck(:display_name).each do |name|
+  display_names =  Country::Alias.distinct.pluck(:display_name).each do |name|
     name.tr!(" ", "")
   end
 

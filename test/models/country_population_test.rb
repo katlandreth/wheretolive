@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CountryPopulationTest < ActiveSupport::TestCase
+class Country::PopulationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

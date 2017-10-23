@@ -19,12 +19,12 @@ namespace :country_code do
       name      = row.find_element(:css, "td.abs").text
       code      = row.find_element(:css, "td:nth-of-type(3)").text
 
-      if country = CountryCode.find_by(country_name: name )
+      if country = Country::Code.find_by(country_name: name )
         puts "updating country detail..."
         country.update(code: code)
       else
         puts "creating new country..."
-        country = CountryCode.create(country_name: name, code: code)
+        country = Country::Code.create(country_name: name, code: code)
       end
     end
 

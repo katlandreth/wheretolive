@@ -5,7 +5,7 @@ namespace :scrape do
     client.timeout = 120 # seconds
     driver = ::Selenium::WebDriver.for :chrome, http_client: client
 
-    scraper = ScrapeScores.new("CountryPopulation", driver)
+    scraper = ScrapeScores.new("Country::Population", driver)
 
     scraper.visit("http://www.worldometers.info/world-population/population-by-country/")
     scraper.wait_to_find("table#example2 tbody td.sorting_1")

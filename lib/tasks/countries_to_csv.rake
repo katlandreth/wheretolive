@@ -13,7 +13,7 @@ namespace :export do
         table.constantize.all.each do |country|
 
           # below we fill in the country's preferred name, or the current name of the attribute to make this column useful for clustering in OpenRefine
-          preferred_name = CountryAlias.find_by(name: country.country_name).try(:display_name) || country.country_name
+          preferred_name = Country::Alias.find_by(name: country.country_name).try(:display_name) || country.country_name
           writer << [country.country_name, preferred_name]
         end
       end

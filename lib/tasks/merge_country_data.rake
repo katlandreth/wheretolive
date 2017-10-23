@@ -7,7 +7,7 @@ task merge_country_data: :environment do
     attribute = NormalizeData.attribute_name_from_country_data_table(table)
     table.constantize.all.each do |raw_country|
       raw_country_name = raw_country.country_name
-      country_display_name = CountryAlias.country_display_name(raw_country_name)
+      country_display_name = Country::Alias.country_display_name(raw_country_name)
       value = raw_country.value
       if country = Country.find_by(name: country_display_name)
         puts "updating " + country_display_name + " " + value.to_s

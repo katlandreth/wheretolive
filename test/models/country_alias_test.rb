@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CountryAliasTest < ActiveSupport::TestCase
+class Country::AliasTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

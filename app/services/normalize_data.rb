@@ -38,7 +38,7 @@ class NormalizeData
   end
 
   def self.attribute_name_from_country_data_table
-    if @table == "CountryCode"
+    if @table == "Country::Code"
       @table.underscore.to_sym
     else
       @table.gsub("Country", "").underscore.to_sym
