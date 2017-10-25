@@ -1,79 +1,87 @@
-<h3>Exclude Countries That Match These Parameters</h3>
+<% content_for :filter_modal_header, flush: true do %>
+  <h3>Exclude Countries That Match These Parameters</h3>
+<% end %>
 
-<% @categories.each do |category| %>
 
-  <%= f.fields_for category.to_sym do |c|%>
-    <div class="row">
-      <div class="category-range clearfix">
-        <div class="col-md-6">
-          <h4 class="category-range-header"><%= attribute_name(category) %></h4>
-        </div>
-        <div class="col-md-6">
-          <div class="row range_input_row">
-            <div class="col-md-6 range_min">
-              <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
-            </div>
-            <div class="col-md-6 range_max">
-              <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
-            </div>
+<% content_for :filter_modal_body, flush: true do %>
+  <% @categories.each do |category| %>
+
+    <%= f.fields_for category.to_sym do |c|%>
+      <div class="row">
+        <div class="category-range clearfix">
+          <div class="col-md-6">
+            <h4 class="category-range-header"><%= attribute_name(category) %></h4>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
+          <div class="col-md-6">
+            <div class="row range_input_row">
+              <div class="col-md-6 range_min">
+                <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
+              </div>
+              <div class="col-md-6 range_max">
+                <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
+
   <% end %>
+
+  <script>
+    $(document).ready(function(){
+      <% CATEGORIES.each do |cat_name| %>
+        var <%= cat_name + "_data" %> = <%= slider_catgory_data(cat_name).to_json.html_safe %>;
+
+        function initCategoryRangeSlider(category) {
+
+          $( category.slider_div_id ).slider({
+            range: true,
+            min: category.slider_min,
+            max: category.slider_max,
+            values: category.slider_initial_values,
+            slide: function( event, ui ) {
+              $( category.slider_input_min_id ).val( ui.values[ 0 ] );
+              $( category.slider_input_max_id ).val( ui.values[ 1 ] );
+            },
+          });
+          var init_min = $(category.slider_input_min_id).val() || $( category.slider_div_id ).slider( "values", 0 );
+          var init_max = $(category.slider_input_max_id).val() || $( category.slider_div_id ).slider( "values", 1 );
+          $( category.slider_input_min_id ).val( init_min );
+          $( category.slider_input_max_id ).val( init_max );
+        };
+
+        function update_slider(category){
+          var min_value = $(category.slider_input_min_id).val() || category.slider_min;
+          var max_value = $(category.slider_input_max_id).val() || category.slider_max;
+
+          $(category.slider_div_id).slider( "values", "0", parseInt(min_value) );
+          $(category.slider_div_id).slider( "values", "1", parseInt(max_value) );
+        }
+
+        initCategoryRangeSlider(<%= cat_name + "_data" %>);
+        update_slider(<%= cat_name + "_data" %>);
+
+        $(<%= cat_name + "_data" %>.slider_input_min_id).change(function(event){
+          update_slider(<%= cat_name + "_data" %>);
+        });
+
+        $(<%= cat_name + "_data" %>.slider_input_max_id).change(function(event){
+          update_slider(<%= cat_name + "_data" %>);
+        });
+
+      <% end %>
+    });
+  </script>
 
 <% end %>
 
-<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-<%= f.submit "Apply" %>
-
-<script>
-  $(document).ready(function(){
-    <% CATEGORIES.each do |cat_name| %>
-      var <%= cat_name + "_data" %> = <%= slider_catgory_data(cat_name).to_json.html_safe %>;
-
-      function initCategoryRangeSlider(category) {
-
-        $( category.slider_div_id ).slider({
-          range: true,
-          min: category.slider_min,
-          max: category.slider_max,
-          values: category.slider_initial_values,
-          slide: function( event, ui ) {
-            $( category.slider_input_min_id ).val( ui.values[ 0 ] );
-            $( category.slider_input_max_id ).val( ui.values[ 1 ] );
-          },
-        });
-        var init_min = $(category.slider_input_min_id).val() || $( category.slider_div_id ).slider( "values", 0 );
-        var init_max = $(category.slider_input_max_id).val() || $( category.slider_div_id ).slider( "values", 1 );
-        $( category.slider_input_min_id ).val( init_min );
-        $( category.slider_input_max_id ).val( init_max );
-      };
-
-      function update_slider(category){
-        var min_value = $(category.slider_input_min_id).val() || category.slider_min;
-        var max_value = $(category.slider_input_max_id).val() || category.slider_max;
-
-        $(category.slider_div_id).slider( "values", "0", parseInt(min_value) );
-        $(category.slider_div_id).slider( "values", "1", parseInt(max_value) );
-      }
-
-      initCategoryRangeSlider(<%= cat_name + "_data" %>);
-      update_slider(<%= cat_name + "_data" %>);
-
-      $(<%= cat_name + "_data" %>.slider_input_min_id).change(function(event){
-        update_slider(<%= cat_name + "_data" %>);
-      });
-
-      $(<%= cat_name + "_data" %>.slider_input_max_id).change(function(event){
-        update_slider(<%= cat_name + "_data" %>);
-      });
-
-    <% end %>
-  });
-</script>
+<% content_for :filter_modal_footer, flush: true do %>
+  <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+  <%= f.submit "Apply" %>
+<% end %>

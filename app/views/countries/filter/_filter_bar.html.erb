@@ -3,7 +3,7 @@
       <div class="filter-form-wrapper">
         <%= form_for :category_filter, url: category_filter_path, html:{ class: "row form-horizontal" }, remote: true do |f| %>
           <div id="category_switches" class="col-md-12 category_switches filter-section hide-filter">
-            <%= render "countries/filter/categories", f: f  %>
+            <%= render partial: "countries/filter/categories", locals:{f: f}, layout: "countries/filter/modal"  %>
           </div>
         <% end %>
         <div id="calc_score_form_wrapper">

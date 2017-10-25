@@ -1,37 +1,43 @@
-<%= f.fields_for :weights do |w| %>
-  <% @categories.each do |category| %>
-    <div class="form-group">
-      <label for=<%= "#{category}_slider" %> class="col-md-6 control-label"><%= category.titleize %></label>
-      <div class="input-group col-md-6">
-        <%= w.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
-
-        <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
-      </div>
-    </div>
-  <% end %>
+<% content_for :filter_modal_header, flush: true do %>
+  <h3>Categories To Include In Your Results</h3>
 <% end %>
 
-<datalist id=<"slidersettings">
-  <option>0</option>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-  <option>6</option>
-  <option>7</option>
-  <option>8</option>
-  <option>9</option>
-  <option>10</option>
-</datalist>
+<% content_for :filter_modal_body, flush: true do %>
+  <%= f.fields_for :weights do |w| %>
+    <% @categories.each do |category| %>
+      <div class="form-group">
+        <label for=<%= "#{category}_slider" %> class="col-md-6 control-label"><%= category.titleize %></label>
+        <div class="input-group col-md-6">
+          <%= w.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
 
-<%#= f.submit "Get Overall Rank", class: "btn btn-primary", id: "submit-filter-button", remote: true %>
-<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-<%= f.submit "Apply", id: "submit-filter-button" %>
+          <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
+  <datalist id=<"slidersettings">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </datalist>
 
-<script>
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-</script>
+  <script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  </script>
+<% end %>
+
+<% content_for :filter_modal_footer, flush: true do %>
+  <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+  <%= f.submit "Apply", id: "submit-filter-button" %>
+<% end %>

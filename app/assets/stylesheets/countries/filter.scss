@@ -19,6 +19,9 @@
   -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
           transition: all 0.5s ease;
+  h3 {
+    text-align:center;
+  }
 }
 
 .filter-form-wrapper {
@@ -51,13 +54,6 @@
   margin-bottom: 5px;
   padding:5px;
   background:#fff;
-}
-
-.filter-section {
-  background: #eee;
-  h3 {
-    text-align:center;
-  }
 }
 
 /* The switch - the box around the slider */
@@ -214,10 +210,7 @@ input:checked + .slider:before {
   cursor:pointer;
 }
 
-
-/* Media Querries */
-
-
+/* Media Queries */
 @media (max-width: 740px) {
 
   .range_slider.ui-slider .ui-slider-handle {

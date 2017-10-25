@@ -1,20 +1,27 @@
-<h3>Categories To Include In Your Results</h3>
+<% content_for :filter_modal_header, flush: true do %>
+  <h3>Categories To Include In Your Results</h3>
+<% end %>
 
+<% content_for :filter_modal_body, flush: true do %>
   <% CATEGORIES.each do |name|  %>
-  <div class="category_switch_wrapper clearfix">
-    <div class="switch_label_wrapper col-md-7">
-      <%= "#{name.titleize}" %>
-    </div>
+    <div class="category_switch_wrapper clearfix">
+      <div class="switch_label_wrapper col-md-7">
+        <%= "#{name.titleize}" %>
+      </div>
 
-    <div class="switch_wrapper col-md-5">
-      <span class="toggle_states">off</span>
-      <label class="switch">
-        <%= f.check_box name %>
-        <span class="slider round"></span>
-      </label>
-      <span class="toggle_states">on</span>
+      <div class="switch_wrapper col-md-5">
+        <span class="toggle_states">off</span>
+        <label class="switch">
+          <%= f.check_box name %>
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle_states">on</span>
+      </div>
     </div>
-  </div>
   <% end %>
-<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-<%= f.submit "Apply" %>
+<% end %>
+
+<% content_for :filter_modal_footer, flush: true do %>
+  <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+  <%= f.submit "Apply" %>
+<% end %>
