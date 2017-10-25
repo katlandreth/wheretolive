@@ -38,6 +38,6 @@
 <% end %>
 
 <% content_for :filter_modal_footer, flush: true do %>
-  <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-  <%= f.submit "Apply", id: "submit-filter-button" %>
+  <%= link_to "Cancel", :back %>
+  <%= f.submit "Apply", class: "filter-button", id: "submit-filter-button" %>
 <% end %>

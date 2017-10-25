@@ -197,8 +197,16 @@ input:checked + .slider:before {
   margin-bottom: 10px;
 }
 
-/* make filter buttons clickable on iOS devices */
+/* filter-buttons */
 
+.filter-button {
+  box-shadow: none;
+  border-radius: 0;
+  padding: 10px;
+  color: #2196F3;
+  border: 1px solid #2196F3;
+  background: white;
+}
 
 #showCategorySwitches{
   cursor:pointer;
@@ -208,6 +216,17 @@ input:checked + .slider:before {
 }
 #showCategoryWeights{
   cursor:pointer;
+}
+
+
+/* filter modal */
+
+.filter-modal-footer {
+  padding: 10px;
+  text-align: right;
+  input, button, a {
+    margin:5px;
+  }
 }
 
 /* Media Queries */
