@@ -29,6 +29,9 @@
 
 <% end %>
 
+<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+<%= f.submit "Apply" %>
+
 <script>
   $(document).ready(function(){
     <% CATEGORIES.each do |cat_name| %>

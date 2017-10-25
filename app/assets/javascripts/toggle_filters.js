@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $(function() {
-  
+
     $(".filter-form-wrapper").on("click", "#submit-filter-button", function(){
       console.log("button clicked");
       $('div[id^=category]').addClass("hide-filter");
@@ -22,10 +22,6 @@ $(document).ready(function(){
       $('#category_weights').toggleClass("hide-filter");
     });
 
-    // $('#submit-filter-button').click(function(){
-    //   console.log("button clicked");
-    //   $('div[id^=category]').addClass("hide-filter");
-    // })
   })
 });
 

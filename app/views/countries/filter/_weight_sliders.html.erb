@@ -25,7 +25,9 @@
   <option>10</option>
 </datalist>
 
-<%= f.submit "Get Overall Rank", class: "btn btn-primary", id: "submit-filter-button", remote: true %>
+<%#= f.submit "Get Overall Rank", class: "btn btn-primary", id: "submit-filter-button", remote: true %>
+<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+<%= f.submit "Apply", id: "submit-filter-button" %>
 
 
 <script>
