@@ -22,3 +22,17 @@
   -moz-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+#switch-view-buttons {
+  align-self: end;
+}
