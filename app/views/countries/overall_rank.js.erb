@@ -1,5 +1,5 @@
+$("#country-count-wrapper").html("<%= escape_javascript(render partial: 'country_count', locals: { current_results: @current_results } )%>");
 $("#grid-view-wrapper").html("<%= escape_javascript(render partial: 'grid_view', locals: { data: @data }) %>");
-
 $("#table-view-wrapper").html("<%= escape_javascript(render partial: 'table_view', locals: { current_results: @current_results }) %>");
 
 $(".map-navigation").html("<%= escape_javascript(render partial: 'maps/map_nav_list', locals: {current_category: @current_category, categories: @categories})%>");
