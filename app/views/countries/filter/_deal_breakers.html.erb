@@ -5,33 +5,31 @@
 
 <% content_for :filter_modal_body, flush: true do %>
   <% @categories.each do |category| %>
-
     <%= f.fields_for category.to_sym do |c|%>
-      <div class="row">
-        <div class="category-range clearfix">
-          <div class="col-md-6">
-            <h4 class="category-range-header"><%= attribute_name(category) %></h4>
-          </div>
-          <div class="col-md-6">
-            <div class="row range_input_row">
-              <div class="col-md-6 range_min">
-                <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
-              </div>
-              <div class="col-md-6 range_max">
-                <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
-              </div>
+      <div class="category_switch_wrapper clearfix">
+        <div class="switch_label_wrapper col-md-6">
+          <%= attribute_name(category) %>
+        </div>
+
+        <div class="switch_wrapper col-md-6">
+          <div class="row range_input_row">
+            <div class="col-md-6 range_min">
+              <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
-              </div>
+            <div class="col-md-6 range_max">
+              <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
             </div>
           </div>
         </div>
       </div>
     <% end %>
-
   <% end %>
+
 
   <script>
     $(document).ready(function(){
@@ -74,7 +72,6 @@
         $(<%= cat_name + "_data" %>.slider_input_max_id).change(function(event){
           update_slider(<%= cat_name + "_data" %>);
         });
-
       <% end %>
     });
   </script>

@@ -1,16 +1,21 @@
 <% content_for :filter_modal_header, flush: true do %>
-  <h3>Categories To Include In Your Results</h3>
+  <h3>How much does each category matter?</h3>
+  <!-- <p>Higher numbers give a category more weight. Weights are relative to each other. Giving every category a weight of 5 will produce the same result as giving every category a weight of 1.</p> -->
 <% end %>
 
 <% content_for :filter_modal_body, flush: true do %>
   <%= f.fields_for :weights do |w| %>
     <% @categories.each do |category| %>
-      <div class="form-group">
-        <label for=<%= "#{category}_slider" %> class="col-md-6 control-label"><%= category.titleize %></label>
-        <div class="input-group col-md-6">
-          <%= w.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
+      <div class="category_switch_wrapper clearfix">
+        <div class="switch_label_wrapper col-md-6">
+          <%= category.titleize %>
+        </div>
 
+        <div class="switch_wrapper col-md-6">
+        <div class="input-group">
+          <%= w.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
           <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
+        </div>
         </div>
       </div>
     <% end %>
