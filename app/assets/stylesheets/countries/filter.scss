@@ -222,6 +222,8 @@ input:checked + .slider:before {
   z-index:2000;
   .btn {
     border-radius: 0;
+    padding-top:6px;
+    padding-bottom:6px;
   }
 }
 

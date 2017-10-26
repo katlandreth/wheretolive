@@ -1,7 +1,6 @@
 #grid-view-wrapper,
 #table-view-wrapper,
 #map-view-wrapper {
-
 }
 
 .country-index.country-index-show {
@@ -24,14 +23,18 @@
 }
 
 .row.is-flex {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    padding: 0 5px; //accounts for shadows in grid view
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 5px; //accounts for shadows in grid view
+  .btn-default{
+    border-color: white;
+    color:#045fb0;
+  }
 }
 .row.is-flex > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #switch-view-buttons {

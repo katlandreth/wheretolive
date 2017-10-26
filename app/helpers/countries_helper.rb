@@ -92,5 +92,9 @@ module CountriesHelper
     end
   end
 
+  def score_circle_degrees(score)
+    this_many = ( (100 - score) * 0.01 ) * 360
+    "#{this_many}deg"
+  end
 
 end

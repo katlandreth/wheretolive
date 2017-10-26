@@ -4,31 +4,6 @@
   <%= render partial: "countries/filter/filter_bar" %>
   <%= render partial: 'shared/loading' %>
 
-  <div class="row is-flex">
-    <div class="col-md-6">
-      <div id="country-count-wrapper">
-        <%= render partial: "country_count" %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="btn-group" id="switch-view-buttons">
-
-        <a id="map-view-button" data-index-style-div="map-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
-          <span class="glyphicon glyphicon-globe"></span>Map</a>
-        </a>
-
-        <a id="grid-view-button" data-index-style-div="grid-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
-          <span class="glyphicon glyphicon-th"></span>Grid</a>
-        </a>
-
-        <a id="table-view-button" data-index-style-div="table-view-wrapper" href="#" class="btn btn-default btn-sm countries-index-style">
-          <span class="glyphicon glyphicon-th-list"></span>Table</a>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <div class="countries_wrapper">
     <div id="grid-view-wrapper" class="country-index country-index-show">
       <%= render partial: "grid_view" %>

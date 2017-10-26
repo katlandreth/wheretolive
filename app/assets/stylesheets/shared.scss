@@ -6,12 +6,25 @@ button.btn-circle {
   font-family: 'Noto Sans', sans-serif;
 }
 
-#filters .glyphicon {
-  font-size: 20px;
+body {
+  background: whitesmoke;
+}
+
+#filters {
+  background: url("globe.jpg");
+  z-index:2000;
+  position:relative;
+  .glyphicon {
+    font-size: 15px;
+  }
 }
 
 .filter-label {
   font-size:10px;
+}
+
+.nav-container {
+  background:rgba(255,255,255,0.8);
 }
 
 $base-line-height: 24px;
@@ -181,6 +194,18 @@ $pulse-duration: 750ms;
 #switch-view-buttons {
   .btn {
     border-radius: 0;
+  }
+}
+
+.sub-nav-wrapper{
+  background: white;
+  border-top: 2px solid #e7bf34;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.4);
+  color:#7b7b7b;
+  margin-bottom:20px;
+  h3{
+    margin-top:10px;
+    font-size: 20px;
   }
 }
 
