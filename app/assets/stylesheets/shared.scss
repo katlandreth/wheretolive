@@ -158,6 +158,8 @@ $pulse-duration: 750ms;
   position: fixed;
   background: rgba(0,0,0,0.6);
   z-index: 1000;
+  top:0;
+  left:0;
   &.mo-hide {
     height: 0;
     width: 0;
@@ -167,12 +169,18 @@ $pulse-duration: 750ms;
     animation: fadeOutToNone 0.5s ease-out;
   }
   &.mo-show {
-    height:100vh;
-    width:100vw;
+    height:100%;
+    width:100%;
     -webkit-animation: fadeInFromNone 0.5s ease-out;
     -moz-animation: fadeInFromNone 0.5s ease-out;
     -o-animation: fadeInFromNone 0.5s ease-out;
     animation: fadeInFromNone 0.5s ease-out;
+  }
+}
+
+#switch-view-buttons {
+  .btn {
+    border-radius: 0;
   }
 }
 

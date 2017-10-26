@@ -9,10 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
-    <%= render partial: "shared/nav"%>
-    <%= render partial: 'shared/modal_overlay' %>
     <div class="container">
-      <%= yield %>
+      <%= render partial: "shared/nav"%>
+      <%= render partial: 'shared/modal_overlay' %>
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

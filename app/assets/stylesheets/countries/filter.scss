@@ -218,6 +218,13 @@ input:checked + .slider:before {
   cursor:pointer;
 }
 
+.toggle-filter-buttons {
+  z-index:2000;
+  .btn {
+    border-radius: 0;
+  }
+}
+
 
 /* filter modal */
 
