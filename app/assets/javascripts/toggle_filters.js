@@ -2,8 +2,8 @@ $(document).ready(function(){
   $(function() {
 
     $(".filter-form-wrapper").on("click", "#submit-filter-button", function(){
-      $('.modal-overlay').addClass("mo-hidden");
       $('div[id^=category]').addClass("hide-filter");
+      toggleOverlay()
     });
 
     $('#showCategorySwitches').click(function() {
