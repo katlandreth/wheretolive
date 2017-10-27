@@ -2,8 +2,13 @@
   position:relative;
 }
 
+.filter-bar-container {
+  position:absolute;
+  width:100%;
+}
+
 .filter-section.hide-filter {
-  position: abolute;
+  position: absolute;
   top: -1000px;
   -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
@@ -11,8 +16,8 @@
 }
 
 .filter-section {
-  position: absolute;
-  top:0;
+  position: relative;
+  padding:10px;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   z-index: 2000;
@@ -26,7 +31,6 @@
 
 .filter-form-wrapper {
   overflow-y: scroll;
-  position:absolute;
   height:500px;
   width:100%;
   padding:10px;
@@ -38,7 +42,12 @@
   color:#aaa;
 }
 
+.switch_label_wrapper{
+  flex:1;
+}
+
 .switch_wrapper {
+  flex:1;
   line-height: 1;
   float:right;
   text-align: right;
@@ -227,6 +236,10 @@ input:checked + .slider:before {
   }
 }
 
+.switch_label_wrapper {
+  flex:1;
+}
+
 
 /* filter modal */
 
@@ -245,5 +258,17 @@ input:checked + .slider:before {
     width: 30px;
   	height: 30px;
     top: -10px;
+  }
+}
+
+@media (max-width:990px) and (min-width: 560px) {
+  .filter-section {
+    padding: 10px 100px;
+  }
+}
+
+@media (min-width:990px) {
+  .filter-section {
+    padding: 10px 50px;
   }
 }

@@ -13,9 +13,15 @@
       <%= render partial: "shared/nav"%>
       <%= render partial: 'shared/modal_overlay' %>
       <%= render partial: 'shared/sub_nav' %>
+    </div>
+    <div class="filter-bar-container">
       <div class="container">
-        <%= yield %>
+        <%= render partial: "countries/filter/filter_bar" %>
       </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
     </div>
   </body>
 </html>

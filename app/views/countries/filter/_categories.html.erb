@@ -5,11 +5,11 @@
 <% content_for :filter_modal_body, flush: true do %>
   <% CATEGORIES.each do |name|  %>
     <div class="category_switch_wrapper clearfix">
-      <div class="switch_label_wrapper col-md-7">
+      <div class="switch_label_wrapper">
         <%= "#{name.titleize}" %>
       </div>
 
-      <div class="switch_wrapper col-md-5">
+      <div class="switch_wrapper">
         <span class="toggle_states">off</span>
         <label class="switch">
           <%= f.check_box name %>
