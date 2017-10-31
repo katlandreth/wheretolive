@@ -264,7 +264,7 @@ input:checked + .slider:before {
 }
 
 /* Media Queries */
-@media (max-width: 740px) {
+@media only screen and (max-width: 740px) {
 
   .range_slider.ui-slider .ui-slider-handle {
     width: 30px;
@@ -277,19 +277,19 @@ input:checked + .slider:before {
   }
 }
 
-@media (max-width:990px) and (min-width: 560px) {
+@media only screen and (max-width:990px) and (min-width: 560px) {
   .filter-section {
     padding: 10px 100px;
   }
 }
 
-@media (min-width:990px) {
+@media only screen and (min-width:990px) {
   .filter-section {
     padding: 10px 50px;
   }
 }
 
-@media (max-width:500px){
+@media only screen and (max-width:500px){
   .category_switch_wrapper {
     flex-wrap: wrap;
   }
