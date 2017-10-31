@@ -5,6 +5,7 @@
 .filter-bar-container {
   position:absolute;
   width:100%;
+  top:65px;
 }
 
 .filter-section.hide-filter {
@@ -63,6 +64,18 @@
   margin-bottom: 5px;
   padding:5px;
   background:#fff;
+}
+
+.flex-row{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+  flex: 1;
+}
+
+.slider-wrapper {
+  width:100%;
 }
 
 /* The switch - the box around the slider */
@@ -240,7 +253,6 @@ input:checked + .slider:before {
   flex:1;
 }
 
-
 /* filter modal */
 
 .filter-modal-footer {
@@ -259,6 +271,10 @@ input:checked + .slider:before {
   	height: 30px;
     top: -10px;
   }
+
+  .ui-slider-handle:nth-child(3) {
+    left: 95% !important;
+  }
 }
 
 @media (max-width:990px) and (min-width: 560px) {
@@ -270,5 +286,20 @@ input:checked + .slider:before {
 @media (min-width:990px) {
   .filter-section {
     padding: 10px 50px;
+  }
+}
+
+@media (max-width:500px){
+  .category_switch_wrapper {
+    flex-wrap: wrap;
+  }
+
+  .switch_label_wrapper {
+    flex-basis: 100%;
+    text-align: left;
+  }
+
+  .switch_wrapper {
+    text-align: left;
   }
 }

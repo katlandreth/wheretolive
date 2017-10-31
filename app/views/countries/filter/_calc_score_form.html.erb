@@ -1,4 +1,4 @@
-<%= form_for :overall_rank, url: overall_rank_path, html:{ class: "row form-horizontal" }, remote: true do |f| %>
+<%= form_for :overall_rank, url: overall_rank_path, remote: true do |f| %>
   <div id="category_deal_breakers" class="col-md-12 deal_breakers filter-section hide-filter">
     <%= render partial: "countries/filter/deal_breakers", locals:{ f: f }, layout: "countries/filter/modal"  %>
   </div>

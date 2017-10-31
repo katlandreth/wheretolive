@@ -1,5 +1,5 @@
 <% content_for :filter_modal_header, flush: true do %>
-  <h3>Exclude Countries That Match These Parameters</h3>
+  <h3>Only Include Countries Within These Ranges</h3>
 <% end %>
 
 
@@ -7,21 +7,21 @@
   <% @categories.each do |category| %>
     <%= f.fields_for category.to_sym do |c|%>
       <div class="category_switch_wrapper clearfix">
-        <div class="switch_label_wrapper col-md-6">
+        <div class="switch_label_wrapper">
           <%= attribute_name(category) %>
         </div>
 
-        <div class="switch_wrapper col-md-6">
-          <div class="row range_input_row">
-            <div class="col-md-6 range_min">
+        <div class="switch_wrapper">
+          <div class="flex-row range_input_row">
+            <div class="range_min">
               <%= c.number_field( :min, in: slider_min(category)..slider_max(category), id: slider_input_min_id(category) ) %>
             </div>
-            <div class="col-md-6 range_max">
+            <div class="range_max">
               <%= c.number_field( :max, in: slider_min(category)..slider_max(category), id: slider_input_max_id(category) ) %>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
+          <div class="flex-row">
+            <div class="slider-wrapper">
               <div id="<%= slider_div_id(category) %>" class="range_slider"></div>
             </div>
           </div>

@@ -7,11 +7,11 @@
   <%= f.fields_for :weights do |w| %>
     <% @categories.each do |category| %>
       <div class="category_switch_wrapper clearfix">
-        <div class="switch_label_wrapper col-md-6">
+        <div class="switch_label_wrapper">
           <%= category.titleize %>
         </div>
 
-        <div class="switch_wrapper col-md-6">
+        <div class="switch_wrapper">
         <div class="input-group">
           <%= w.range_field "#{category}_value".to_sym, :min=>0, :max=>10, :class=>"form-control", :id=>"#{category}_slider", list: "slidersettings", autocomplete: "off", onchange: "rangePrimary#{category}.value=value"%>
           <output class="input-group-addon" id=<%= "rangePrimary#{category}" %> >5</output>
