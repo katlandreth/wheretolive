@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Where to Live | <%= Country::Alias.country_display_name(@country.name) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <div class="container-fluid">
+      <div id="filters" class="row">
+        <div class="container-fluid text-center nav-container">
+        </div>
+      </div>
+      <div class="row sub-nav-wrapper">
+        <div class="container">
+        </div>
+      </div>
+      <%#= render partial: "shared/nav"%>
+      <%#= render partial: 'shared/modal_overlay' %>
+      <%#= render partial: 'shared/sub_nav' %>
+    </div>
+    <div class="filter-bar-container">
+      <div class="container">
+        <%#= render partial: "countries/filter/filter_bar" %>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+    </div>
+  </body>
+</html>

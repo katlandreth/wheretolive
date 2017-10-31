@@ -10,6 +10,7 @@ class CountriesController < ApplicationController
   end
 
   def show
+    render :layout => 'show'
   end
 
   def new
